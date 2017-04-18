@@ -1,0 +1,4210 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="http://github.com/brianc/node-postgres-pure">pg.js (v4.1.1)</a>
+</h1>
+<h4>node-postgres without the bindings</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pg.js">module pg.js</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Client">
+            function <span class="apidocSignatureSpan">pg.js.</span>Client
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection">
+            function <span class="apidocSignatureSpan">pg.js.</span>Connection
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Query">
+            function <span class="apidocSignatureSpan">pg.js.</span>Query
+            <span class="apidocSignatureSpan">(config, values, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.js.Client">
+            function <span class="apidocSignatureSpan">pg.js.</span>js.Client
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.js.Connection">
+            function <span class="apidocSignatureSpan">pg.js.</span>js.Connection
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.js.Query">
+            function <span class="apidocSignatureSpan">pg.js.</span>js.Query
+            <span class="apidocSignatureSpan">(config, values, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.js.connection_parameters">
+            function <span class="apidocSignatureSpan">pg.js.</span>js.connection_parameters
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.js.result">
+            function <span class="apidocSignatureSpan">pg.js.</span>js.result
+            <span class="apidocSignatureSpan">(rowMode)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.js.type_overrides">
+            function <span class="apidocSignatureSpan">pg.js.</span>js.type_overrides
+            <span class="apidocSignatureSpan">(userTypes)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">number <span class="apidocSignatureSpan">pg.js.</span>_eventsCount</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pg.js.</span>_events</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pg.js.</span>defaults</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pg.js.</span>domain</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pg.js.</span>js.Client.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pg.js.</span>js.Connection.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pg.js.</span>js.Query.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pg.js.</span>js.connection_parameters.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pg.js.</span>js.pools</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pg.js.</span>js.result.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pg.js.</span>js.type_overrides.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pg.js.</span>js.types</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pg.js.</span>js.types.arrayParser</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pg.js.</span>js.utils</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pg.js.</span>pools</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pg.js.</span>types</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pg.js.Client">module pg.js.Client</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Client.Client">
+            function <span class="apidocSignatureSpan">pg.js.</span>Client
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Client.Query">
+            function <span class="apidocSignatureSpan">pg.js.Client.</span>Query
+            <span class="apidocSignatureSpan">(config, values, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Client.md5">
+            function <span class="apidocSignatureSpan">pg.js.Client.</span>md5
+            <span class="apidocSignatureSpan">(string)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Client.super_">
+            function <span class="apidocSignatureSpan">pg.js.Client.</span>super_
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pg.js.Client.prototype">module pg.js.Client.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Client.prototype._pulseQueryQueue">
+            function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>_pulseQueryQueue
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Client.prototype.cancel">
+            function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>cancel
+            <span class="apidocSignatureSpan">(client, query)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Client.prototype.connect">
+            function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>connect
+            <span class="apidocSignatureSpan">(callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Client.prototype.copyFrom">
+            function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>copyFrom
+            <span class="apidocSignatureSpan">(text)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Client.prototype.copyTo">
+            function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>copyTo
+            <span class="apidocSignatureSpan">(text)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Client.prototype.end">
+            function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>end
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Client.prototype.escapeIdentifier">
+            function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>escapeIdentifier
+            <span class="apidocSignatureSpan">(str)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Client.prototype.escapeLiteral">
+            function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>escapeLiteral
+            <span class="apidocSignatureSpan">(str)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Client.prototype.getStartupConf">
+            function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>getStartupConf
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Client.prototype.getTypeParser">
+            function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>getTypeParser
+            <span class="apidocSignatureSpan">(oid, format)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Client.prototype.query">
+            function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>query
+            <span class="apidocSignatureSpan">(config, values, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Client.prototype.setTypeParser">
+            function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>setTypeParser
+            <span class="apidocSignatureSpan">(oid, format, parseFn)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pg.js.Connection">module pg.js.Connection</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.Connection">
+            function <span class="apidocSignatureSpan">pg.js.</span>Connection
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.super_">
+            function <span class="apidocSignatureSpan">pg.js.Connection.</span>super_
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pg.js.Connection.prototype">module pg.js.Connection.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype._readValue">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>_readValue
+            <span class="apidocSignatureSpan">(buffer)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype._send">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>_send
+            <span class="apidocSignatureSpan">(code, more)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.attachListeners">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>attachListeners
+            <span class="apidocSignatureSpan">(stream)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.bind">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>bind
+            <span class="apidocSignatureSpan">(config, more)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.cancel">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>cancel
+            <span class="apidocSignatureSpan">(processID, secretKey)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.close">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>close
+            <span class="apidocSignatureSpan">(msg, more)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.connect">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>connect
+            <span class="apidocSignatureSpan">(port, host)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.describe">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>describe
+            <span class="apidocSignatureSpan">(msg, more)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.end">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>end
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.endCopyFrom">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>endCopyFrom
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.execute">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>execute
+            <span class="apidocSignatureSpan">(config, more)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.flush">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>flush
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parse">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parse
+            <span class="apidocSignatureSpan">(query, more)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parseA">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseA
+            <span class="apidocSignatureSpan">(buffer, length)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parseC">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseC
+            <span class="apidocSignatureSpan">(buffer, length)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parseCString">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseCString
+            <span class="apidocSignatureSpan">(buffer)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parseD">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseD
+            <span class="apidocSignatureSpan">(buffer, length)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parseE">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseE
+            <span class="apidocSignatureSpan">(buffer, length)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parseField">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseField
+            <span class="apidocSignatureSpan">(buffer)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parseG">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseG
+            <span class="apidocSignatureSpan">(buffer, length)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parseGH">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseGH
+            <span class="apidocSignatureSpan">(buffer, msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parseH">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseH
+            <span class="apidocSignatureSpan">(buffer, length)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parseInt16">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseInt16
+            <span class="apidocSignatureSpan">(buffer)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parseInt32">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseInt32
+            <span class="apidocSignatureSpan">(buffer)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parseK">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseK
+            <span class="apidocSignatureSpan">(buffer, length)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parseMessage">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseMessage
+            <span class="apidocSignatureSpan">(buffer)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parseN">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseN
+            <span class="apidocSignatureSpan">(buffer, length)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parseR">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseR
+            <span class="apidocSignatureSpan">(buffer, length)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parseS">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseS
+            <span class="apidocSignatureSpan">(buffer, length)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parseT">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseT
+            <span class="apidocSignatureSpan">(buffer, length)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parseZ">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseZ
+            <span class="apidocSignatureSpan">(buffer, length)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.parsed">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parsed
+            <span class="apidocSignatureSpan">(buffer, length)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.password">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>password
+            <span class="apidocSignatureSpan">(password)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.query">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>query
+            <span class="apidocSignatureSpan">(text)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.readBytes">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>readBytes
+            <span class="apidocSignatureSpan">(buffer, length)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.readString">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>readString
+            <span class="apidocSignatureSpan">(buffer, length)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.requestSsl">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>requestSsl
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.sendCopyFail">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>sendCopyFail
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.sendCopyFromChunk">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>sendCopyFromChunk
+            <span class="apidocSignatureSpan">(chunk)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.startup">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>startup
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Connection.prototype.sync">
+            function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>sync
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pg.js.Query">module pg.js.Query</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Query.Query">
+            function <span class="apidocSignatureSpan">pg.js.</span>Query
+            <span class="apidocSignatureSpan">(config, values, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Query.super_">
+            function <span class="apidocSignatureSpan">pg.js.Query.</span>super_
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pg.js.Query.prototype">module pg.js.Query.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Query.prototype._getRows">
+            function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>_getRows
+            <span class="apidocSignatureSpan">(connection, rows)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Query.prototype.handleCommandComplete">
+            function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>handleCommandComplete
+            <span class="apidocSignatureSpan">(msg, con)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Query.prototype.handleCopyData">
+            function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>handleCopyData
+            <span class="apidocSignatureSpan">(msg, connection)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Query.prototype.handleCopyInResponse">
+            function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>handleCopyInResponse
+            <span class="apidocSignatureSpan">(connection)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Query.prototype.handleDataRow">
+            function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>handleDataRow
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Query.prototype.handleError">
+            function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>handleError
+            <span class="apidocSignatureSpan">(err, connection)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Query.prototype.handlePortalSuspended">
+            function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>handlePortalSuspended
+            <span class="apidocSignatureSpan">(connection)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Query.prototype.handleReadyForQuery">
+            function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>handleReadyForQuery
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Query.prototype.handleRowDescription">
+            function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>handleRowDescription
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Query.prototype.hasBeenParsed">
+            function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>hasBeenParsed
+            <span class="apidocSignatureSpan">(connection)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Query.prototype.prepare">
+            function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>prepare
+            <span class="apidocSignatureSpan">(connection)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Query.prototype.requiresPreparation">
+            function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>requiresPreparation
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.Query.prototype.submit">
+            function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>submit
+            <span class="apidocSignatureSpan">(connection)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pg.js.connection_parameters">module pg.js.connection_parameters</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.connection_parameters.connection_parameters">
+            function <span class="apidocSignatureSpan">pg.js.</span>connection_parameters
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pg.js.connection_parameters.prototype">module pg.js.connection_parameters.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.connection_parameters.prototype.getLibpqConnectionString">
+            function <span class="apidocSignatureSpan">pg.js.connection_parameters.prototype.</span>getLibpqConnectionString
+            <span class="apidocSignatureSpan">(cb)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pg.js.pools">module pg.js.pools</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.pools.Client">
+            function <span class="apidocSignatureSpan">pg.js.pools.</span>Client
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.pools.getOrCreate">
+            function <span class="apidocSignatureSpan">pg.js.pools.</span>getOrCreate
+            <span class="apidocSignatureSpan">(clientConfig)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pg.js.pools.</span>all</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pg.js.result">module pg.js.result</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.result.result">
+            function <span class="apidocSignatureSpan">pg.js.</span>result
+            <span class="apidocSignatureSpan">(rowMode)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pg.js.result.prototype">module pg.js.result.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.result.prototype._getTypeParser">
+            function <span class="apidocSignatureSpan">pg.js.result.prototype.</span>_getTypeParser
+            <span class="apidocSignatureSpan">(oid, format)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.result.prototype._parseRowAsArray">
+            function <span class="apidocSignatureSpan">pg.js.result.prototype.</span>_parseRowAsArray
+            <span class="apidocSignatureSpan">(rowData)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.result.prototype.addCommandComplete">
+            function <span class="apidocSignatureSpan">pg.js.result.prototype.</span>addCommandComplete
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.result.prototype.addFields">
+            function <span class="apidocSignatureSpan">pg.js.result.prototype.</span>addFields
+            <span class="apidocSignatureSpan">(fieldDescriptions)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.result.prototype.addRow">
+            function <span class="apidocSignatureSpan">pg.js.result.prototype.</span>addRow
+            <span class="apidocSignatureSpan">(row)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.result.prototype.parseRow">
+            function <span class="apidocSignatureSpan">pg.js.result.prototype.</span>parseRow
+            <span class="apidocSignatureSpan">(rowData)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pg.js.type_overrides">module pg.js.type_overrides</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.type_overrides.type_overrides">
+            function <span class="apidocSignatureSpan">pg.js.</span>type_overrides
+            <span class="apidocSignatureSpan">(userTypes)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pg.js.type_overrides.prototype">module pg.js.type_overrides.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.type_overrides.prototype.getOverrides">
+            function <span class="apidocSignatureSpan">pg.js.type_overrides.prototype.</span>getOverrides
+            <span class="apidocSignatureSpan">(format)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.type_overrides.prototype.getTypeParser">
+            function <span class="apidocSignatureSpan">pg.js.type_overrides.prototype.</span>getTypeParser
+            <span class="apidocSignatureSpan">(oid, format)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.type_overrides.prototype.setTypeParser">
+            function <span class="apidocSignatureSpan">pg.js.type_overrides.prototype.</span>setTypeParser
+            <span class="apidocSignatureSpan">(oid, format, parseFn)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pg.js.types">module pg.js.types</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.types.getTypeParser">
+            function <span class="apidocSignatureSpan">pg.js.types.</span>getTypeParser
+            <span class="apidocSignatureSpan">(oid, format)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.types.setTypeParser">
+            function <span class="apidocSignatureSpan">pg.js.types.</span>setTypeParser
+            <span class="apidocSignatureSpan">(oid, format, parseFn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pg.js.types.</span>arrayParser</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pg.js.types.arrayParser">module pg.js.types.arrayParser</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.types.arrayParser.create">
+            function <span class="apidocSignatureSpan">pg.js.types.arrayParser.</span>create
+            <span class="apidocSignatureSpan">(source, converter)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pg.js.utils">module pg.js.utils</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.utils.normalizeQueryConfig">
+            function <span class="apidocSignatureSpan">pg.js.utils.</span>normalizeQueryConfig
+            <span class="apidocSignatureSpan">(config, values, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.utils.prepareValue">
+            function <span class="apidocSignatureSpan">pg.js.utils.</span>prepareValue
+            <span class="apidocSignatureSpan">(val, seen)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pg.js" id="apidoc.module.pg.js">module pg.js</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Client" id="apidoc.element.pg.js.Client">
+        function <span class="apidocSignatureSpan">pg.js.</span>Client
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">Client = function (config) {
+  EventEmitter.call(this);
+
+  this.connectionParameters = new ConnectionParameters(config);
+  this.user = this.connectionParameters.user;
+  this.database = this.connectionParameters.database;
+  this.port = this.connectionParameters.port;
+  this.host = this.connectionParameters.host;
+  this.password = this.connectionParameters.password;
+
+  var c = config || {};
+
+  this._types = new TypeOverrides(c.types);
+
+  this.connection = c.connection || new Connection({
+    stream: c.stream,
+    ssl: this.connectionParameters.ssl
+  });
+  this.queryQueue = [];
+  this.binary = c.binary || defaults.binary;
+  this.encoding = 'utf8';
+  this.processID = null;
+  this.secretKey = null;
+  this.ssl = this.connectionParameters.ssl || false;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection" id="apidoc.element.pg.js.Connection">
+        function <span class="apidocSignatureSpan">pg.js.</span>Connection
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">Connection = function (config) {
+  EventEmitter.call(this);
+  config = config || {};
+  this.stream = config.stream || new net.Stream();
+  this.lastBuffer = false;
+  this.lastOffset = 0;
+  this.buffer = null;
+  this.offset = null;
+  this.encoding = 'utf8';
+  this.parsedStatements = {};
+  this.writer = new Writer();
+  this.ssl = config.ssl || false;
+  this._ending = false;
+  this._mode = TEXT_MODE;
+  this._emitMessage = false;
+  this._reader = new Reader({
+    headerSize: 1,
+    lengthPadding: -4
+  });
+  var self = this;
+  this.on('newListener', function(eventName) {
+    if(eventName == 'message') {
+      self._emitMessage = true;
+    }
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Query" id="apidoc.element.pg.js.Query">
+        function <span class="apidocSignatureSpan">pg.js.</span>Query
+        <span class="apidocSignatureSpan">(config, values, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">Query = function (config, values, callback) {
+  // use of "new" optional
+  if(!(this instanceof Query)) { return new Query(config, values, callback); }
+
+  config = utils.normalizeQueryConfig(config, values, callback);
+
+  this.text = config.text;
+  this.values = config.values;
+  this.rows = config.rows;
+  this.types = config.types;
+  this.name = config.name;
+  this.binary = config.binary;
+  this.stream = config.stream;
+  //use unique portal name each time
+  this.portal = config.portal || "";
+  this.callback = config.callback;
+  if(process.domain &amp;&amp; config.callback) {
+    this.callback = process.domain.bind(config.callback);
+  }
+  this._result = new Result(config.rowMode, config.types);
+  this.isPreparedStatement = false;
+  this._canceledDueToError = false;
+  EventEmitter.call(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.js.Client" id="apidoc.element.pg.js.js.Client">
+        function <span class="apidocSignatureSpan">pg.js.</span>js.Client
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">js.Client = function (config) {
+  EventEmitter.call(this);
+
+  this.connectionParameters = new ConnectionParameters(config);
+  this.user = this.connectionParameters.user;
+  this.database = this.connectionParameters.database;
+  this.port = this.connectionParameters.port;
+  this.host = this.connectionParameters.host;
+  this.password = this.connectionParameters.password;
+
+  var c = config || {};
+
+  this._types = new TypeOverrides(c.types);
+
+  this.connection = c.connection || new Connection({
+    stream: c.stream,
+    ssl: this.connectionParameters.ssl
+  });
+  this.queryQueue = [];
+  this.binary = c.binary || defaults.binary;
+  this.encoding = 'utf8';
+  this.processID = null;
+  this.secretKey = null;
+  this.ssl = this.connectionParameters.ssl || false;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.js.Connection" id="apidoc.element.pg.js.js.Connection">
+        function <span class="apidocSignatureSpan">pg.js.</span>js.Connection
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">js.Connection = function (config) {
+  EventEmitter.call(this);
+  config = config || {};
+  this.stream = config.stream || new net.Stream();
+  this.lastBuffer = false;
+  this.lastOffset = 0;
+  this.buffer = null;
+  this.offset = null;
+  this.encoding = 'utf8';
+  this.parsedStatements = {};
+  this.writer = new Writer();
+  this.ssl = config.ssl || false;
+  this._ending = false;
+  this._mode = TEXT_MODE;
+  this._emitMessage = false;
+  this._reader = new Reader({
+    headerSize: 1,
+    lengthPadding: -4
+  });
+  var self = this;
+  this.on('newListener', function(eventName) {
+    if(eventName == 'message') {
+      self._emitMessage = true;
+    }
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.js.Query" id="apidoc.element.pg.js.js.Query">
+        function <span class="apidocSignatureSpan">pg.js.</span>js.Query
+        <span class="apidocSignatureSpan">(config, values, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">js.Query = function (config, values, callback) {
+  // use of "new" optional
+  if(!(this instanceof Query)) { return new Query(config, values, callback); }
+
+  config = utils.normalizeQueryConfig(config, values, callback);
+
+  this.text = config.text;
+  this.values = config.values;
+  this.rows = config.rows;
+  this.types = config.types;
+  this.name = config.name;
+  this.binary = config.binary;
+  this.stream = config.stream;
+  //use unique portal name each time
+  this.portal = config.portal || "";
+  this.callback = config.callback;
+  if(process.domain &amp;&amp; config.callback) {
+    this.callback = process.domain.bind(config.callback);
+  }
+  this._result = new Result(config.rowMode, config.types);
+  this.isPreparedStatement = false;
+  this._canceledDueToError = false;
+  EventEmitter.call(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.js.connection_parameters" id="apidoc.element.pg.js.js.connection_parameters">
+        function <span class="apidocSignatureSpan">pg.js.</span>js.connection_parameters
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">js.connection_parameters = function (config) {
+  config = typeof config == 'string' ? parse(config) : (config || {});
+  this.user = val('user', config);
+  this.database = val('database', config);
+  this.port = parseInt(val('port', config), 10);
+  this.host = val('host', config);
+  this.password = val('password', config);
+  this.binary = val('binary', config);
+  this.ssl = config.ssl || useSsl();
+  this.client_encoding = val("client_encoding", config);
+  //a domain socket begins with '/'
+  this.isDomainSocket = (!(this.host||'').indexOf('/'));
+
+  this.application_name = val('application_name', config, 'PGAPPNAME');
+  this.fallback_application_name = val('fallback_application_name', config, false);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.js.result" id="apidoc.element.pg.js.js.result">
+        function <span class="apidocSignatureSpan">pg.js.</span>js.result
+        <span class="apidocSignatureSpan">(rowMode)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">js.result = function (rowMode) {
+  this.command = null;
+  this.rowCount = null;
+  this.oid = null;
+  this.rows = [];
+  this.fields = [];
+  this._parsers = [];
+  this.RowCtor = null;
+  this.rowAsArray = rowMode == "array";
+  if(this.rowAsArray) {
+    this.parseRow = this._parseRowAsArray;
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.js.type_overrides" id="apidoc.element.pg.js.js.type_overrides">
+        function <span class="apidocSignatureSpan">pg.js.</span>js.type_overrides
+        <span class="apidocSignatureSpan">(userTypes)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function TypeOverrides(userTypes) {
+  this._types = userTypes || types;
+  this.text = {};
+  this.binary = {};
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pg.js.Client" id="apidoc.module.pg.js.Client">module pg.js.Client</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Client.Client" id="apidoc.element.pg.js.Client.Client">
+        function <span class="apidocSignatureSpan">pg.js.</span>Client
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">Client = function (config) {
+  EventEmitter.call(this);
+
+  this.connectionParameters = new ConnectionParameters(config);
+  this.user = this.connectionParameters.user;
+  this.database = this.connectionParameters.database;
+  this.port = this.connectionParameters.port;
+  this.host = this.connectionParameters.host;
+  this.password = this.connectionParameters.password;
+
+  var c = config || {};
+
+  this._types = new TypeOverrides(c.types);
+
+  this.connection = c.connection || new Connection({
+    stream: c.stream,
+    ssl: this.connectionParameters.ssl
+  });
+  this.queryQueue = [];
+  this.binary = c.binary || defaults.binary;
+  this.encoding = 'utf8';
+  this.processID = null;
+  this.secretKey = null;
+  this.ssl = this.connectionParameters.ssl || false;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Client.Query" id="apidoc.element.pg.js.Client.Query">
+        function <span class="apidocSignatureSpan">pg.js.Client.</span>Query
+        <span class="apidocSignatureSpan">(config, values, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">Query = function (config, values, callback) {
+  // use of "new" optional
+  if(!(this instanceof Query)) { return new Query(config, values, callback); }
+
+  config = utils.normalizeQueryConfig(config, values, callback);
+
+  this.text = config.text;
+  this.values = config.values;
+  this.rows = config.rows;
+  this.types = config.types;
+  this.name = config.name;
+  this.binary = config.binary;
+  this.stream = config.stream;
+  //use unique portal name each time
+  this.portal = config.portal || "";
+  this.callback = config.callback;
+  if(process.domain &amp;&amp; config.callback) {
+    this.callback = process.domain.bind(config.callback);
+  }
+  this._result = new Result(config.rowMode, config.types);
+  this.isPreparedStatement = false;
+  this._canceledDueToError = false;
+  EventEmitter.call(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Client.md5" id="apidoc.element.pg.js.Client.md5">
+        function <span class="apidocSignatureSpan">pg.js.Client.</span>md5
+        <span class="apidocSignatureSpan">(string)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">md5 = function (string) {
+  return crypto.createHash('md5').update(string).digest('hex');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Client.super_" id="apidoc.element.pg.js.Client.super_">
+        function <span class="apidocSignatureSpan">pg.js.Client.</span>super_
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function EventEmitter() {
+  EventEmitter.init.call(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pg.js.Client.prototype" id="apidoc.module.pg.js.Client.prototype">module pg.js.Client.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Client.prototype._pulseQueryQueue" id="apidoc.element.pg.js.Client.prototype._pulseQueryQueue">
+        function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>_pulseQueryQueue
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_pulseQueryQueue = function () {
+  if(this.readyForQuery===true) {
+    this.activeQuery = this.queryQueue.shift();
+    if(this.activeQuery) {
+      this.readyForQuery = false;
+      this.hasExecuted = true;
+      this.activeQuery.submit(this.connection);
+    } else if(this.hasExecuted) {
+      this.activeQuery = null;
+      this.emit('drain');
+    }
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Client.prototype.cancel" id="apidoc.element.pg.js.Client.prototype.cancel">
+        function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>cancel
+        <span class="apidocSignatureSpan">(client, query)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">cancel = function (client, query) {
+  if(client.activeQuery == query) {
+    var con = this.connection;
+
+    if(this.host &amp;&amp; this.host.indexOf('/') === 0) {
+      con.connect(this.host + '/.s.PGSQL.' + this.port);
+    } else {
+      con.connect(this.port, this.host);
+    }
+
+    //once connection is established send cancel message
+    con.on('connect', function() {
+      con.cancel(client.processID, client.secretKey);
+    });
+  } else if(client.queryQueue.indexOf(query) != -1) {
+    client.queryQueue.splice(client.queryQueue.indexOf(query), 1);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Client.prototype.connect" id="apidoc.element.pg.js.Client.prototype.connect">
+        function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>connect
+        <span class="apidocSignatureSpan">(callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">connect = function (callback) {
+  var self = this;
+  var con = this.connection;
+
+  if(this.host &amp;&amp; this.host.indexOf('/') === 0) {
+    con.connect(this.host + '/.s.PGSQL.' + this.port);
+  } else {
+    con.connect(this.port, this.host);
+  }
+
+
+  //once connection is established send startup message
+  con.on('connect', function() {
+    if(self.ssl) {
+      con.requestSsl();
+    } else {
+      con.startup(self.getStartupConf());
+    }
+  });
+
+  con.on('sslconnect', function() {
+    con.startup(self.getStartupConf());
+  });
+
+  function checkPgPass(cb) {
+    return function(msg) {
+      if (null !== self.password) {
+        cb(msg);
+      } else {
+        pgPass(self.connectionParameters, function(pass){
+          if (undefined !== pass) {
+            self.connectionParameters.password = self.password = pass;
+          }
+          cb(msg);
+        });
+      }
+    };
+  }
+
+  //password request handling
+  con.on('authenticationCleartextPassword', checkPgPass(function() {
+    con.password(self.password);
+  }));
+
+  //password request handling
+  con.on('authenticationMD5Password', checkPgPass(function(msg) {
+    var inner = Client.md5(self.password + self.user);
+    var outer = Client.md5(inner + msg.salt.toString('binary'));
+    var md5password = "md5" + outer;
+    con.password(md5password);
+  }));
+
+  con.once('backendKeyData', function(msg) {
+    self.processID = msg.processID;
+    self.secretKey = msg.secretKey;
+  });
+
+  //hook up query handling events to connection
+  //after the connection initially becomes ready for queries
+  con.once('readyForQuery', function() {
+
+    //delegate rowDescription to active query
+    con.on('rowDescription', function(msg) {
+      self.activeQuery.handleRowDescription(msg);
+    });
+
+    //delegate dataRow to active query
+    con.on('dataRow', function(msg) {
+      self.activeQuery.handleDataRow(msg);
+    });
+
+    //delegate portalSuspended to active query
+    con.on('portalSuspended', function(msg) {
+      self.activeQuery.handlePortalSuspended(con);
+    });
+
+    //delegate commandComplete to active query
+    con.on('commandComplete', function(msg) {
+      self.activeQuery.handleCommandComplete(msg, con);
+    });
+
+    //if a prepared statement has a name and properly parses
+    //we track that its already been executed so we don't parse
+    //it again on the same client
+    con.on('parseComplete', function(msg) {
+      if(self.activeQuery.name) {
+        con.parsedStatements[self.activeQuery.name] = true;
+      }
+    });
+
+    con.on('copyInResponse', function(msg) {
+      self.activeQuery.handleCopyInResponse(self.connection);
+    });
+
+    con.on('copyData', function (msg) {
+      self.activeQuery.handleCopyData(msg, self.connection);
+    });
+
+    con.on('notification', function(msg) {
+      self.emit('notification', msg);
+    });
+
+    //process possible callback argument to Client#connect
+    if (callback) {
+      callback(null, self);
+      //remove callback for proper error handling
+      //after the connect event
+      callback = null;
+    }
+    self.emit('connect');
+  });
+
+  con.on('readyForQuery', function() {
+    var activeQuery = self.activeQuery;
+    self.activeQuery = null;
+    self.readyForQuery = true;
+    self._pulseQueryQueue();
+    if(activeQuery) {
+      activeQuery.handleReadyForQuery();
+    }
+  });
+
+  con.on('error', function(error) {
+    if(self.activeQuery) {
+      var activeQuery = self.activeQuery;
+      self.activeQuery = null;
+      return activeQuery.handleError(error, con);
+    }
+    if(!callback) {
+      return self.emit('error', error);
+    }
+    callback(error);
+    callback = null;
+  });
+
+  con.once('end', function() {
+    if ( callback ) {
+      // haven't received a connection message yet !
+      var err = new Error('Connection terminated');
+      callback(err);
+      callback = null;
+      return;
+    }
+    if(self.activeQuery) {
+      var disconnectError = new Error('Connection terminated');
+      self.activeQuery.handleError(disconnectError, con);
+      self.activeQuery = null;
+    }
+    self.emit('end');
+  });
+
+
+  con.on('notice', function(msg) {
+    self.emit('notice', msg ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+### use
+
+```js
+//exact same code, you can just change the string
+//in your requires from pg to pg.js and you're done
+var pg = require('pg.js')
+
+pg.<span class="apidocCodeKeywordSpan">connect</span>(function(err, client, release) {
+  if (err) throw err;
+  client.query('SELECT NOW()', function(err, res) {
+    release()
+    if (err) throw err;
+    console.log(res.rows[0])
+  })
+})
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Client.prototype.copyFrom" id="apidoc.element.pg.js.Client.prototype.copyFrom">
+        function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>copyFrom
+        <span class="apidocSignatureSpan">(text)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">copyFrom = function (text) {
+  throw new Error("For PostgreSQL COPY TO/COPY FROM support npm install pg-copy-streams");
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Client.prototype.copyTo" id="apidoc.element.pg.js.Client.prototype.copyTo">
+        function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>copyTo
+        <span class="apidocSignatureSpan">(text)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">copyTo = function (text) {
+  throw new Error("For PostgreSQL COPY TO/COPY FROM support npm install pg-copy-streams");
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Client.prototype.end" id="apidoc.element.pg.js.Client.prototype.end">
+        function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>end
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">end = function () {
+  this.connection.end();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+var pg = require('./lib')
+pg.connect(function(err, client, done) {
+  if(err) throw err
+  client.query('SELECT NOW()', function(err, res) {
+    console.log(res.rows[0].now)
+    done()
+    pg.<span class="apidocCodeKeywordSpan">end</span>()
+  })
+})
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Client.prototype.escapeIdentifier" id="apidoc.element.pg.js.Client.prototype.escapeIdentifier">
+        function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>escapeIdentifier
+        <span class="apidocSignatureSpan">(str)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">escapeIdentifier = function (str) {
+
+  var escaped = '"';
+
+  for(var i = 0; i &lt; str.length; i++) {
+    var c = str[i];
+    if(c === '"') {
+      escaped += c + c;
+    } else {
+      escaped += c;
+    }
+  }
+
+  escaped += '"';
+
+  return escaped;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Client.prototype.escapeLiteral" id="apidoc.element.pg.js.Client.prototype.escapeLiteral">
+        function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>escapeLiteral
+        <span class="apidocSignatureSpan">(str)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">escapeLiteral = function (str) {
+
+  var hasBackslash = false;
+  var escaped = '\'';
+
+  for(var i = 0; i &lt; str.length; i++) {
+    var c = str[i];
+    if(c === '\'') {
+      escaped += c + c;
+    } else if (c === '\\') {
+      escaped += c + c;
+      hasBackslash = true;
+    } else {
+      escaped += c;
+    }
+  }
+
+  escaped += '\'';
+
+  if(hasBackslash === true) {
+    escaped = ' E' + escaped;
+  }
+
+  return escaped;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Client.prototype.getStartupConf" id="apidoc.element.pg.js.Client.prototype.getStartupConf">
+        function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>getStartupConf
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getStartupConf = function () {
+  var params = this.connectionParameters;
+
+  var data = {
+    user: params.user,
+    database: params.database
+  };
+
+  var appName = params.application_name || params.fallback_application_name;
+  if (appName) {
+    data.application_name = appName;
+  }
+
+  return data;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Client.prototype.getTypeParser" id="apidoc.element.pg.js.Client.prototype.getTypeParser">
+        function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>getTypeParser
+        <span class="apidocSignatureSpan">(oid, format)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getTypeParser = function (oid, format) {
+  return this._types.getTypeParser(oid, format);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    format = 'text';
+  }
+  this.getOverrides(format)[oid] = parseFn;
+};
+
+TypeOverrides.prototype.getTypeParser = function(oid, format) {
+  format = format || 'text';
+  return this.getOverrides(format)[oid] || this._types.<span class="apidocCodeKeywordSpan">getTypeParser</span>(oid, format);
+};
+
+module.exports = TypeOverrides;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Client.prototype.query" id="apidoc.element.pg.js.Client.prototype.query">
+        function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>query
+        <span class="apidocSignatureSpan">(config, values, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">query = function (config, values, callback) {
+  //can take in strings, config object or query object
+  var query = (typeof config.submit == 'function') ? config :
+     new Query(config, values, callback);
+  if(this.binary &amp;&amp; !query.binary) {
+    query.binary = true;
+  }
+  if(query._result) {
+    query._result._getTypeParser = this._types.getTypeParser.bind(this._types);
+  }
+
+  this.queryQueue.push(query);
+  this._pulseQueryQueue();
+  return query;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```js
+//exact same code, you can just change the string
+//in your requires from pg to pg.js and you're done
+var pg = require('pg.js')
+
+pg.connect(function(err, client, release) {
+  if (err) throw err;
+  client.<span class="apidocCodeKeywordSpan">query</span>('SELECT NOW()', function(err, res) {
+    release()
+    if (err) throw err;
+    console.log(res.rows[0])
+  })
+})
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Client.prototype.setTypeParser" id="apidoc.element.pg.js.Client.prototype.setTypeParser">
+        function <span class="apidocSignatureSpan">pg.js.Client.prototype.</span>setTypeParser
+        <span class="apidocSignatureSpan">(oid, format, parseFn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">setTypeParser = function (oid, format, parseFn) {
+  return this._types.setTypeParser(oid, format, parseFn);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  application_name : undefined,
+  fallback_application_name: undefined
+};
+
+//parse int8 so you can get your count values as actual numbers
+module.exports.__defineSetter__("parseInt8", function(val) {
+  require('pg-types').<span class="apidocCodeKeywordSpan">setTypeParser</span>(20, 'text', val ? parseInt :
+function(val) { return val; });
+});
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pg.js.Connection" id="apidoc.module.pg.js.Connection">module pg.js.Connection</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.Connection" id="apidoc.element.pg.js.Connection.Connection">
+        function <span class="apidocSignatureSpan">pg.js.</span>Connection
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">Connection = function (config) {
+  EventEmitter.call(this);
+  config = config || {};
+  this.stream = config.stream || new net.Stream();
+  this.lastBuffer = false;
+  this.lastOffset = 0;
+  this.buffer = null;
+  this.offset = null;
+  this.encoding = 'utf8';
+  this.parsedStatements = {};
+  this.writer = new Writer();
+  this.ssl = config.ssl || false;
+  this._ending = false;
+  this._mode = TEXT_MODE;
+  this._emitMessage = false;
+  this._reader = new Reader({
+    headerSize: 1,
+    lengthPadding: -4
+  });
+  var self = this;
+  this.on('newListener', function(eventName) {
+    if(eventName == 'message') {
+      self._emitMessage = true;
+    }
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.super_" id="apidoc.element.pg.js.Connection.super_">
+        function <span class="apidocSignatureSpan">pg.js.Connection.</span>super_
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function EventEmitter() {
+  EventEmitter.init.call(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pg.js.Connection.prototype" id="apidoc.module.pg.js.Connection.prototype">module pg.js.Connection.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype._readValue" id="apidoc.element.pg.js.Connection.prototype._readValue">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>_readValue
+        <span class="apidocSignatureSpan">(buffer)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_readValue = function (buffer) {
+  var length = this.parseInt32(buffer);
+  if(length === -1) return null;
+  if(this._mode === TEXT_MODE) {
+    return this.readString(buffer, length);
+  }
+  return this.readBytes(buffer, length);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype._send" id="apidoc.element.pg.js.Connection.prototype._send">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>_send
+        <span class="apidocSignatureSpan">(code, more)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_send = function (code, more) {
+  if(!this.stream.writable) { return false; }
+  if(more === true) {
+    this.writer.addHeader(code);
+  } else {
+    return this.stream.write(this.writer.flush(code));
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.attachListeners" id="apidoc.element.pg.js.Connection.prototype.attachListeners">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>attachListeners
+        <span class="apidocSignatureSpan">(stream)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">attachListeners = function (stream) {
+  var self = this;
+  stream.on('data', function(buff) {
+    self._reader.addChunk(buff);
+    var packet = self._reader.read();
+    while(packet) {
+      var msg = self.parseMessage(packet);
+      if(self._emitMessage) {
+        self.emit('message', msg);
+      }
+      self.emit(msg.name, msg);
+      packet = self._reader.read();
+    }
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.bind" id="apidoc.element.pg.js.Connection.prototype.bind">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>bind
+        <span class="apidocSignatureSpan">(config, more)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">bind = function (config, more) {
+  //normalize config
+  config = config || {};
+  config.portal = config.portal || '';
+  config.statement = config.statement || '';
+  config.binary = config.binary || false;
+  var values = config.values || [];
+  var len = values.length;
+  var useBinary = false;
+  for (var j = 0; j &lt; len; j++)
+    useBinary |= values[j] instanceof Buffer;
+  var buffer = this.writer
+    .addCString(config.portal)
+    .addCString(config.statement);
+  if (!useBinary)
+    buffer.addInt16(0);
+  else {
+    buffer.addInt16(len);
+    for (j = 0; j &lt; len; j++)
+      buffer.addInt16(values[j] instanceof Buffer);
+  }
+  buffer.addInt16(len);
+  for(var i = 0; i &lt; len; i++) {
+    var val = values[i];
+    if(val === null || typeof val === "undefined") {
+      buffer.addInt32(-1);
+    } else if (val instanceof Buffer) {
+      buffer.addInt32(val.length);
+      buffer.add(val);
+    } else {
+      buffer.addInt32(Buffer.byteLength(val));
+      buffer.addString(val);
+    }
+  }
+
+  if(config.binary) {
+    buffer.addInt16(1); // format codes to use binary
+    buffer.addInt16(1);
+  }
+  else {
+    buffer.addInt16(0); // format codes to use text
+  }
+  //0x42 = 'B'
+  this._send(0x42, more);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.cancel" id="apidoc.element.pg.js.Connection.prototype.cancel">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>cancel
+        <span class="apidocSignatureSpan">(processID, secretKey)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">cancel = function (processID, secretKey) {
+  var bodyBuffer = this.writer
+    .addInt16(1234)
+    .addInt16(5678)
+    .addInt32(processID)
+    .addInt32(secretKey)
+    .addCString('').flush();
+
+  var length = bodyBuffer.length + 4;
+
+  var buffer = new Writer()
+    .addInt32(length)
+    .add(bodyBuffer)
+    .join();
+  this.stream.write(buffer);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.close" id="apidoc.element.pg.js.Connection.prototype.close">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>close
+        <span class="apidocSignatureSpan">(msg, more)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">close = function (msg, more) {
+  this.writer.addCString(msg.type + (msg.name || ''));
+  this._send(0x43, more);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.connect" id="apidoc.element.pg.js.Connection.prototype.connect">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>connect
+        <span class="apidocSignatureSpan">(port, host)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">connect = function (port, host) {
+
+  if(this.stream.readyState === 'closed') {
+    this.stream.connect(port, host);
+  } else if(this.stream.readyState == 'open') {
+    this.emit('connect');
+  }
+
+  var self = this;
+
+  this.stream.on('connect', function() {
+    self.emit('connect');
+  });
+
+  this.stream.on('error', function(error) {
+    //don't raise ECONNRESET errors - they can &amp; should be ignored
+    //during disconnect
+    if(self._ending &amp;&amp; error.code == 'ECONNRESET') {
+      return;
+    }
+    self.emit('error', error);
+  });
+
+  this.stream.on('close', function() {
+    // NOTE: node-0.10 emits both 'end' and 'close'
+    //       for streams closed by the peer, while
+    //       node-0.8 only emits 'close'
+    self.emit('end');
+  });
+
+  if(!this.ssl) {
+    return this.attachListeners(this.stream);
+  }
+
+  this.stream.once('data', function(buffer) {
+    var responseCode = buffer.toString('utf8');
+    if(responseCode != 'S') {
+      return self.emit('error', new Error('The server does not support SSL connections'));
+    }
+    var tls = require('tls');
+    self.stream = tls.connect({
+      socket: self.stream,
+      servername: host,
+      rejectUnauthorized: self.ssl.rejectUnauthorized,
+      ca: self.ssl.ca,
+      pfx: self.ssl.pfx,
+      key: self.ssl.key,
+      passphrase: self.ssl.passphrase,
+      cert: self.ssl.cert,
+      NPNProtocols: self.ssl.NPNProtocols
+    });
+    self.attachListeners(self.stream);
+    self.emit('sslconnect');
+
+    self.stream.on('error', function(error){
+      self.emit('error', error);
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+### use
+
+```js
+//exact same code, you can just change the string
+//in your requires from pg to pg.js and you're done
+var pg = require('pg.js')
+
+pg.<span class="apidocCodeKeywordSpan">connect</span>(function(err, client, release) {
+  if (err) throw err;
+  client.query('SELECT NOW()', function(err, res) {
+    release()
+    if (err) throw err;
+    console.log(res.rows[0])
+  })
+})
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.describe" id="apidoc.element.pg.js.Connection.prototype.describe">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>describe
+        <span class="apidocSignatureSpan">(msg, more)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">describe = function (msg, more) {
+  this.writer.addCString(msg.type + (msg.name || ''));
+  this._send(0x44, more);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.end" id="apidoc.element.pg.js.Connection.prototype.end">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>end
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">end = function () {
+  //0x58 = 'X'
+  this.writer.add(emptyBuffer);
+  this._ending = true;
+  this._send(0x58);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+var pg = require('./lib')
+pg.connect(function(err, client, done) {
+  if(err) throw err
+  client.query('SELECT NOW()', function(err, res) {
+    console.log(res.rows[0].now)
+    done()
+    pg.<span class="apidocCodeKeywordSpan">end</span>()
+  })
+})
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.endCopyFrom" id="apidoc.element.pg.js.Connection.prototype.endCopyFrom">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>endCopyFrom
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">endCopyFrom = function () {
+  this.stream.write(this.writer.add(emptyBuffer).flush(0x63));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.execute" id="apidoc.element.pg.js.Connection.prototype.execute">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>execute
+        <span class="apidocSignatureSpan">(config, more)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">execute = function (config, more) {
+  config = config || {};
+  config.portal = config.portal || '';
+  config.rows = config.rows || '';
+  this.writer
+    .addCString(config.portal)
+    .addInt32(config.rows);
+
+  //0x45 = 'E'
+  this._send(0x45, more);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.flush" id="apidoc.element.pg.js.Connection.prototype.flush">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>flush
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">flush = function () {
+  //0x48 = 'H'
+  this.writer.add(emptyBuffer);
+  this._send(0x48);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parse" id="apidoc.element.pg.js.Connection.prototype.parse">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parse
+        <span class="apidocSignatureSpan">(query, more)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parse = function (query, more) {
+  //expect something like this:
+  // { name: 'queryName',
+  //   text: 'select * from blah',
+  //   types: ['int8', 'bool'] }
+
+  //normalize missing query names to allow for null
+  query.name = query.name || '';
+  //normalize null type array
+  query.types = query.types || [];
+  var len = query.types.length;
+  var buffer = this.writer
+    .addCString(query.name) //name of query
+    .addCString(query.text) //actual query text
+    .addInt16(len);
+  for(var i = 0; i &lt; len; i++) {
+    buffer.addInt32(query.types[i]);
+  }
+
+  var code = 0x50;
+  this._send(code, more);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parseA" id="apidoc.element.pg.js.Connection.prototype.parseA">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseA
+        <span class="apidocSignatureSpan">(buffer, length)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseA = function (buffer, length) {
+  var msg = new Message('notification', length);
+  msg.processId = this.parseInt32(buffer);
+  msg.channel = this.parseCString(buffer);
+  msg.payload = this.parseCString(buffer);
+  return msg;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parseC" id="apidoc.element.pg.js.Connection.prototype.parseC">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseC
+        <span class="apidocSignatureSpan">(buffer, length)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseC = function (buffer, length) {
+  var msg = new Message('commandComplete', length);
+  msg.text = this.parseCString(buffer);
+  return msg;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parseCString" id="apidoc.element.pg.js.Connection.prototype.parseCString">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseCString
+        <span class="apidocSignatureSpan">(buffer)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseCString = function (buffer) {
+  var start = this.offset;
+  while(buffer[this.offset++] !== 0) { }
+  return buffer.toString(this.encoding, start, this.offset - 1);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parseD" id="apidoc.element.pg.js.Connection.prototype.parseD">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseD
+        <span class="apidocSignatureSpan">(buffer, length)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseD = function (buffer, length) {
+  var fieldCount = this.parseInt16(buffer);
+  var msg = new DataRowMessage(length, fieldCount);
+  for(var i = 0; i &lt; fieldCount; i++) {
+    msg.fields.push(this._readValue(buffer));
+  }
+  return msg;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parseE" id="apidoc.element.pg.js.Connection.prototype.parseE">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseE
+        <span class="apidocSignatureSpan">(buffer, length)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseE = function (buffer, length) {
+  var fields = {};
+  var msg, item;
+  var input = new Message('error', length);
+  var fieldType = this.readString(buffer, 1);
+  while(fieldType != '\0') {
+    fields[fieldType] = this.parseCString(buffer);
+    fieldType = this.readString(buffer, 1);
+  }
+  if(input.name === 'error') {
+    // the msg is an Error instance
+    msg = new Error(fields.M);
+    for (item in input) {
+      // copy input properties to the error
+      if(input.hasOwnProperty(item)) {
+        msg[item] = input[item];
+      }
+    }
+  } else {
+    // the msg is an object literal
+    msg = input;
+    msg.message = fields.M;
+  }
+  msg.severity = fields.S;
+  msg.code = fields.C;
+  msg.detail = fields.D;
+  msg.hint = fields.H;
+  msg.position = fields.P;
+  msg.internalPosition = fields.p;
+  msg.internalQuery = fields.q;
+  msg.where = fields.W;
+  msg.file = fields.F;
+  msg.line = fields.L;
+  msg.routine = fields.R;
+  return msg;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parseField" id="apidoc.element.pg.js.Connection.prototype.parseField">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseField
+        <span class="apidocSignatureSpan">(buffer)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseField = function (buffer) {
+  var field = new Field();
+  field.name = this.parseCString(buffer);
+  field.tableID = this.parseInt32(buffer);
+  field.columnID = this.parseInt16(buffer);
+  field.dataTypeID = this.parseInt32(buffer);
+  field.dataTypeSize = this.parseInt16(buffer);
+  field.dataTypeModifier = this.parseInt32(buffer);
+  if(this.parseInt16(buffer) === TEXT_MODE) {
+    this._mode = TEXT_MODE;
+    field.format = FORMAT_TEXT;
+  } else {
+    this._mode = BINARY_MODE;
+    field.format = FORMAT_BINARY;
+  }
+  return field;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parseG" id="apidoc.element.pg.js.Connection.prototype.parseG">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseG
+        <span class="apidocSignatureSpan">(buffer, length)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseG = function (buffer, length) {
+  var msg = new Message('copyInResponse', length);
+  return this.parseGH(buffer, msg);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parseGH" id="apidoc.element.pg.js.Connection.prototype.parseGH">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseGH
+        <span class="apidocSignatureSpan">(buffer, msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseGH = function (buffer, msg) {
+  var isBinary = buffer[this.offset] !== 0;
+  this.offset++;
+  msg.binary = isBinary;
+  var columnCount = this.parseInt16(buffer);
+  msg.columnTypes = [];
+  for(var i = 0; i&lt;columnCount; i++) {
+    msg.columnTypes.push(this.parseInt16(buffer));
+  }
+  return msg;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parseH" id="apidoc.element.pg.js.Connection.prototype.parseH">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseH
+        <span class="apidocSignatureSpan">(buffer, length)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseH = function (buffer, length) {
+  var msg = new Message('copyOutResponse', length);
+  return this.parseGH(buffer, msg);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parseInt16" id="apidoc.element.pg.js.Connection.prototype.parseInt16">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseInt16
+        <span class="apidocSignatureSpan">(buffer)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseInt16 = function (buffer) {
+  var value = buffer.readInt16BE(this.offset, true);
+  this.offset += 2;
+  return value;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parseInt32" id="apidoc.element.pg.js.Connection.prototype.parseInt32">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseInt32
+        <span class="apidocSignatureSpan">(buffer)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseInt32 = function (buffer) {
+  var value = buffer.readInt32BE(this.offset, true);
+  this.offset += 4;
+  return value;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parseK" id="apidoc.element.pg.js.Connection.prototype.parseK">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseK
+        <span class="apidocSignatureSpan">(buffer, length)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseK = function (buffer, length) {
+  var msg = new Message('backendKeyData', length);
+  msg.processID = this.parseInt32(buffer);
+  msg.secretKey = this.parseInt32(buffer);
+  return msg;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parseMessage" id="apidoc.element.pg.js.Connection.prototype.parseMessage">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseMessage
+        <span class="apidocSignatureSpan">(buffer)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseMessage = function (buffer) {
+
+  this.offset = 0;
+  var length = buffer.length + 4;
+  switch(this._reader.header)
+  {
+
+  case 0x52: //R
+    return this.parseR(buffer, length);
+
+  case 0x53: //S
+    return this.parseS(buffer, length);
+
+  case 0x4b: //K
+    return this.parseK(buffer, length);
+
+  case 0x43: //C
+    return this.parseC(buffer, length);
+
+  case 0x5a: //Z
+    return this.parseZ(buffer, length);
+
+  case 0x54: //T
+    return this.parseT(buffer, length);
+
+  case 0x44: //D
+    return this.parseD(buffer, length);
+
+  case 0x45: //E
+    return this.parseE(buffer, length);
+
+  case 0x4e: //N
+    return this.parseN(buffer, length);
+
+  case 0x31: //1
+    return new Message('parseComplete', length);
+
+  case 0x32: //2
+    return new Message('bindComplete', length);
+
+  case 0x33: //3
+    return new Message('closeComplete', length);
+
+  case 0x41: //A
+    return this.parseA(buffer, length);
+
+  case 0x6e: //n
+    return new Message('noData', length);
+
+  case 0x49: //I
+    return new Message('emptyQuery', length);
+
+  case 0x73: //s
+    return new Message('portalSuspended', length);
+
+  case 0x47: //G
+    return this.parseG(buffer, length);
+
+  case 0x48: //H
+    return this.parseH(buffer, length);
+
+  case 0x63: //c
+    return new Message('copyDone', length);
+
+  case 0x64: //d
+    return this.parsed(buffer, length);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parseN" id="apidoc.element.pg.js.Connection.prototype.parseN">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseN
+        <span class="apidocSignatureSpan">(buffer, length)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseN = function (buffer, length) {
+  var msg = this.parseE(buffer, length);
+  msg.name = 'notice';
+  return msg;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parseR" id="apidoc.element.pg.js.Connection.prototype.parseR">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseR
+        <span class="apidocSignatureSpan">(buffer, length)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseR = function (buffer, length) {
+  var code = 0;
+  var msg = new Message('authenticationOk', length);
+  if(msg.length === 8) {
+    code = this.parseInt32(buffer);
+    if(code === 3) {
+      msg.name = 'authenticationCleartextPassword';
+    }
+    return msg;
+  }
+  if(msg.length === 12) {
+    code = this.parseInt32(buffer);
+    if(code === 5) { //md5 required
+      msg.name = 'authenticationMD5Password';
+      msg.salt = new Buffer(4);
+      buffer.copy(msg.salt, 0, this.offset, this.offset + 4);
+      this.offset += 4;
+      return msg;
+    }
+  }
+  throw new Error("Unknown authenticatinOk message type" + util.inspect(msg));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parseS" id="apidoc.element.pg.js.Connection.prototype.parseS">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseS
+        <span class="apidocSignatureSpan">(buffer, length)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseS = function (buffer, length) {
+  var msg = new Message('parameterStatus', length);
+  msg.parameterName = this.parseCString(buffer);
+  msg.parameterValue = this.parseCString(buffer);
+  return msg;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parseT" id="apidoc.element.pg.js.Connection.prototype.parseT">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseT
+        <span class="apidocSignatureSpan">(buffer, length)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseT = function (buffer, length) {
+  var msg = new Message(ROW_DESCRIPTION, length);
+  msg.fieldCount = this.parseInt16(buffer);
+  var fields = [];
+  for(var i = 0; i &lt; msg.fieldCount; i++){
+    fields.push(this.parseField(buffer));
+  }
+  msg.fields = fields;
+  return msg;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parseZ" id="apidoc.element.pg.js.Connection.prototype.parseZ">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parseZ
+        <span class="apidocSignatureSpan">(buffer, length)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseZ = function (buffer, length) {
+  var msg = new Message('readyForQuery', length);
+  msg.name = 'readyForQuery';
+  msg.status = this.readString(buffer, 1);
+  return msg;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.parsed" id="apidoc.element.pg.js.Connection.prototype.parsed">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>parsed
+        <span class="apidocSignatureSpan">(buffer, length)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parsed = function (buffer, length) {
+  var msg = new Message('copyData', length);
+  msg.chunk = this.readBytes(buffer, msg.length - 4);
+  return msg;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.password" id="apidoc.element.pg.js.Connection.prototype.password">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>password
+        <span class="apidocSignatureSpan">(password)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">password = function (password) {
+  //0x70 = 'p'
+  this._send(0x70, this.writer.addCString(password));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.query" id="apidoc.element.pg.js.Connection.prototype.query">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>query
+        <span class="apidocSignatureSpan">(text)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">query = function (text) {
+  //0x51 = Q
+  this.stream.write(this.writer.addCString(text).flush(0x51));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```js
+//exact same code, you can just change the string
+//in your requires from pg to pg.js and you're done
+var pg = require('pg.js')
+
+pg.connect(function(err, client, release) {
+  if (err) throw err;
+  client.<span class="apidocCodeKeywordSpan">query</span>('SELECT NOW()', function(err, res) {
+    release()
+    if (err) throw err;
+    console.log(res.rows[0])
+  })
+})
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.readBytes" id="apidoc.element.pg.js.Connection.prototype.readBytes">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>readBytes
+        <span class="apidocSignatureSpan">(buffer, length)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">readBytes = function (buffer, length) {
+  return buffer.slice(this.offset, this.offset += length);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.readString" id="apidoc.element.pg.js.Connection.prototype.readString">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>readString
+        <span class="apidocSignatureSpan">(buffer, length)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">readString = function (buffer, length) {
+  return buffer.toString(this.encoding, this.offset, (this.offset += length));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.requestSsl" id="apidoc.element.pg.js.Connection.prototype.requestSsl">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>requestSsl
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">requestSsl = function () {
+  this.checkSslResponse = true;
+
+  var bodyBuffer = this.writer
+    .addInt16(0x04D2)
+    .addInt16(0x162F).flush();
+
+  var length = bodyBuffer.length + 4;
+
+  var buffer = new Writer()
+    .addInt32(length)
+    .add(bodyBuffer)
+    .join();
+  this.stream.write(buffer);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.sendCopyFail" id="apidoc.element.pg.js.Connection.prototype.sendCopyFail">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>sendCopyFail
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">sendCopyFail = function (msg) {
+  //this.stream.write(this.writer.add(emptyBuffer).flush(0x66));
+  this.writer.addCString(msg);
+  this._send(0x66);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.sendCopyFromChunk" id="apidoc.element.pg.js.Connection.prototype.sendCopyFromChunk">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>sendCopyFromChunk
+        <span class="apidocSignatureSpan">(chunk)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">sendCopyFromChunk = function (chunk) {
+  this.stream.write(this.writer.add(chunk).flush(0x64));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.startup" id="apidoc.element.pg.js.Connection.prototype.startup">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>startup
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">startup = function (config) {
+  var writer = this.writer
+    .addInt16(3)
+    .addInt16(0)
+  ;
+
+  Object.keys(config).forEach(function(key){
+    var val = config[key];
+    writer.addCString(key).addCString(val);
+  });
+
+  writer.addCString('client_encoding').addCString("'utf-8'");
+
+  var bodyBuffer = writer.addCString('').flush();
+  //this message is sent without a code
+
+  var length = bodyBuffer.length + 4;
+
+  var buffer = new Writer()
+    .addInt32(length)
+    .add(bodyBuffer)
+    .join();
+  this.stream.write(buffer);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Connection.prototype.sync" id="apidoc.element.pg.js.Connection.prototype.sync">
+        function <span class="apidocSignatureSpan">pg.js.Connection.prototype.</span>sync
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">sync = function () {
+  //clear out any pending data in the writer
+  this.writer.flush(0);
+
+  this.writer.add(emptyBuffer);
+  this._ending = true;
+  this._send(0x53);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pg.js.Query" id="apidoc.module.pg.js.Query">module pg.js.Query</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Query.Query" id="apidoc.element.pg.js.Query.Query">
+        function <span class="apidocSignatureSpan">pg.js.</span>Query
+        <span class="apidocSignatureSpan">(config, values, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">Query = function (config, values, callback) {
+  // use of "new" optional
+  if(!(this instanceof Query)) { return new Query(config, values, callback); }
+
+  config = utils.normalizeQueryConfig(config, values, callback);
+
+  this.text = config.text;
+  this.values = config.values;
+  this.rows = config.rows;
+  this.types = config.types;
+  this.name = config.name;
+  this.binary = config.binary;
+  this.stream = config.stream;
+  //use unique portal name each time
+  this.portal = config.portal || "";
+  this.callback = config.callback;
+  if(process.domain &amp;&amp; config.callback) {
+    this.callback = process.domain.bind(config.callback);
+  }
+  this._result = new Result(config.rowMode, config.types);
+  this.isPreparedStatement = false;
+  this._canceledDueToError = false;
+  EventEmitter.call(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Query.super_" id="apidoc.element.pg.js.Query.super_">
+        function <span class="apidocSignatureSpan">pg.js.Query.</span>super_
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function EventEmitter() {
+  EventEmitter.init.call(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pg.js.Query.prototype" id="apidoc.module.pg.js.Query.prototype">module pg.js.Query.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Query.prototype._getRows" id="apidoc.element.pg.js.Query.prototype._getRows">
+        function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>_getRows
+        <span class="apidocSignatureSpan">(connection, rows)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_getRows = function (connection, rows) {
+  connection.execute({
+    portal: this.portalName,
+    rows: rows
+  }, true);
+  connection.flush();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Query.prototype.handleCommandComplete" id="apidoc.element.pg.js.Query.prototype.handleCommandComplete">
+        function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>handleCommandComplete
+        <span class="apidocSignatureSpan">(msg, con)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">handleCommandComplete = function (msg, con) {
+  this._result.addCommandComplete(msg);
+  //need to sync after each command complete of a prepared statement
+  if(this.isPreparedStatement) {
+    con.sync();
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Query.prototype.handleCopyData" id="apidoc.element.pg.js.Query.prototype.handleCopyData">
+        function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>handleCopyData
+        <span class="apidocSignatureSpan">(msg, connection)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">handleCopyData = function (msg, connection) {
+  var chunk = msg.chunk;
+  if(this.stream) {
+    this.stream.handleChunk(chunk);
+  }
+  //if there are no stream (for example when copy to query was sent by
+  //query method instead of copyTo) error will be handled
+  //on copyOutResponse event, so silently ignore this error here
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Query.prototype.handleCopyInResponse" id="apidoc.element.pg.js.Query.prototype.handleCopyInResponse">
+        function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>handleCopyInResponse
+        <span class="apidocSignatureSpan">(connection)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">handleCopyInResponse = function (connection) {
+  if(this.stream) this.stream.startStreamingToConnection(connection);
+  else connection.sendCopyFail('No source stream defined');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Query.prototype.handleDataRow" id="apidoc.element.pg.js.Query.prototype.handleDataRow">
+        function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>handleDataRow
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">handleDataRow = function (msg) {
+  var row = this._result.parseRow(msg.fields);
+  this.emit('row', row, this._result);
+
+  //if there is a callback collect rows
+  if(this.callback) {
+    this._result.addRow(row);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Query.prototype.handleError" id="apidoc.element.pg.js.Query.prototype.handleError">
+        function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>handleError
+        <span class="apidocSignatureSpan">(err, connection)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">handleError = function (err, connection) {
+  //need to sync after error during a prepared statement
+  if(this.isPreparedStatement) {
+    connection.sync();
+  }
+  if(this._canceledDueToError) {
+    err = this._canceledDueToError;
+    this._canceledDueToError = false;
+  }
+  //if callback supplied do not emit error event as uncaught error
+  //events will bubble up to node process
+  if(this.callback) {
+    return this.callback(err);
+  }
+  this.emit('error', err);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Query.prototype.handlePortalSuspended" id="apidoc.element.pg.js.Query.prototype.handlePortalSuspended">
+        function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>handlePortalSuspended
+        <span class="apidocSignatureSpan">(connection)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">handlePortalSuspended = function (connection) {
+  this._getRows(connection, this.rows);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Query.prototype.handleReadyForQuery" id="apidoc.element.pg.js.Query.prototype.handleReadyForQuery">
+        function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>handleReadyForQuery
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">handleReadyForQuery = function () {
+  if(this._canceledDueToError) {
+    return this.handleError(this._canceledDueToError);
+  }
+  if(this.callback) {
+    this.callback(null, this._result);
+  }
+  this.emit('end', this._result);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Query.prototype.handleRowDescription" id="apidoc.element.pg.js.Query.prototype.handleRowDescription">
+        function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>handleRowDescription
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">handleRowDescription = function (msg) {
+  this._result.addFields(msg.fields);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Query.prototype.hasBeenParsed" id="apidoc.element.pg.js.Query.prototype.hasBeenParsed">
+        function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>hasBeenParsed
+        <span class="apidocSignatureSpan">(connection)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">hasBeenParsed = function (connection) {
+  return this.name &amp;&amp; connection.parsedStatements[this.name];
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Query.prototype.prepare" id="apidoc.element.pg.js.Query.prototype.prepare">
+        function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>prepare
+        <span class="apidocSignatureSpan">(connection)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">prepare = function (connection) {
+  var self = this;
+  //prepared statements need sync to be called after each command
+  //complete or when an error is encountered
+  this.isPreparedStatement = true;
+  //TODO refactor this poor encapsulation
+  if(!this.hasBeenParsed(connection)) {
+    connection.parse({
+      text: self.text,
+      name: self.name,
+      types: self.types
+    }, true);
+  }
+
+  //TODO is there some better way to prepare values for the database?
+  if(self.values) {
+    for(var i = 0, len = self.values.length; i &lt; len; i++) {
+      self.values[i] = utils.prepareValue(self.values[i]);
+    }
+  }
+
+  //http://developer.postgresql.org/pgdocs/postgres/protocol-flow.html#PROTOCOL-FLOW-EXT-QUERY
+  connection.bind({
+    portal: self.portalName,
+    statement: self.name,
+    values: self.values,
+    binary: self.binary
+  }, true);
+
+  connection.describe({
+    type: 'P',
+    name: self.portalName || ""
+  }, true);
+
+  this._getRows(connection, this.rows);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Query.prototype.requiresPreparation" id="apidoc.element.pg.js.Query.prototype.requiresPreparation">
+        function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>requiresPreparation
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">requiresPreparation = function () {
+  //named queries must always be prepared
+  if(this.name) { return true; }
+  //always prepare if there are max number of rows expected per
+  //portal execution
+  if(this.rows) { return true; }
+  //don't prepare empty text queries
+  if(!this.text) { return false; }
+  //binary should be prepared to specify results should be in binary
+  //unless there are no parameters
+  if(this.binary &amp;&amp; !this.values) { return false; }
+  //prepare if there are values
+  return (this.values || 0).length &gt; 0;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.Query.prototype.submit" id="apidoc.element.pg.js.Query.prototype.submit">
+        function <span class="apidocSignatureSpan">pg.js.Query.prototype.</span>submit
+        <span class="apidocSignatureSpan">(connection)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">submit = function (connection) {
+  if(this.requiresPreparation()) {
+    this.prepare(connection);
+  } else {
+    connection.query(this.text);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pg.js.connection_parameters" id="apidoc.module.pg.js.connection_parameters">module pg.js.connection_parameters</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.connection_parameters.connection_parameters" id="apidoc.element.pg.js.connection_parameters.connection_parameters">
+        function <span class="apidocSignatureSpan">pg.js.</span>connection_parameters
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">connection_parameters = function (config) {
+  config = typeof config == 'string' ? parse(config) : (config || {});
+  this.user = val('user', config);
+  this.database = val('database', config);
+  this.port = parseInt(val('port', config), 10);
+  this.host = val('host', config);
+  this.password = val('password', config);
+  this.binary = val('binary', config);
+  this.ssl = config.ssl || useSsl();
+  this.client_encoding = val("client_encoding", config);
+  //a domain socket begins with '/'
+  this.isDomainSocket = (!(this.host||'').indexOf('/'));
+
+  this.application_name = val('application_name', config, 'PGAPPNAME');
+  this.fallback_application_name = val('fallback_application_name', config, false);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pg.js.connection_parameters.prototype" id="apidoc.module.pg.js.connection_parameters.prototype">module pg.js.connection_parameters.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.connection_parameters.prototype.getLibpqConnectionString" id="apidoc.element.pg.js.connection_parameters.prototype.getLibpqConnectionString">
+        function <span class="apidocSignatureSpan">pg.js.connection_parameters.prototype.</span>getLibpqConnectionString
+        <span class="apidocSignatureSpan">(cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getLibpqConnectionString = function (cb) {
+  var params = [];
+  add(params, this, 'user');
+  add(params, this, 'password');
+  add(params, this, 'port');
+  add(params, this, 'application_name');
+  add(params, this, 'fallback_application_name');
+
+  if(this.database) {
+    params.push("dbname='" + this.database + "'");
+  }
+  if(this.host) {
+    params.push("host=" + this.host);
+  }
+  if(this.isDomainSocket) {
+    return cb(null, params.join(' '));
+  }
+  if(this.client_encoding) {
+    params.push("client_encoding='" + this.client_encoding + "'");
+  }
+  dns.lookup(this.host, function(err, address) {
+    if(err) return cb(err, null);
+    params.push("hostaddr=" + address);
+    return cb(null, params.join(' '));
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pg.js.pools" id="apidoc.module.pg.js.pools">module pg.js.pools</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.pools.Client" id="apidoc.element.pg.js.pools.Client">
+        function <span class="apidocSignatureSpan">pg.js.pools.</span>Client
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">Client = function (config) {
+  EventEmitter.call(this);
+
+  this.connectionParameters = new ConnectionParameters(config);
+  this.user = this.connectionParameters.user;
+  this.database = this.connectionParameters.database;
+  this.port = this.connectionParameters.port;
+  this.host = this.connectionParameters.host;
+  this.password = this.connectionParameters.password;
+
+  var c = config || {};
+
+  this._types = new TypeOverrides(c.types);
+
+  this.connection = c.connection || new Connection({
+    stream: c.stream,
+    ssl: this.connectionParameters.ssl
+  });
+  this.queryQueue = [];
+  this.binary = c.binary || defaults.binary;
+  this.encoding = 'utf8';
+  this.processID = null;
+  this.secretKey = null;
+  this.ssl = this.connectionParameters.ssl || false;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.pools.getOrCreate" id="apidoc.element.pg.js.pools.getOrCreate">
+        function <span class="apidocSignatureSpan">pg.js.pools.</span>getOrCreate
+        <span class="apidocSignatureSpan">(clientConfig)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getOrCreate = function (clientConfig) {
+  clientConfig = clientConfig || {};
+  var name = JSON.stringify(clientConfig);
+  var pool = pools.all[name];
+  if(pool) {
+    return pool;
+  }
+  pool = genericPool.Pool({
+    name: name,
+    max: clientConfig.poolSize || defaults.poolSize,
+    idleTimeoutMillis: clientConfig.poolIdleTimeout || defaults.poolIdleTimeout,
+    reapIntervalMillis: clientConfig.reapIntervalMillis || defaults.reapIntervalMillis,
+    log: clientConfig.poolLog || defaults.poolLog,
+    create: function(cb) {
+      var client = new pools.Client(clientConfig);
+      client.connect(function(err) {
+        if(err) return cb(err, null);
+
+        //handle connected client background errors by emitting event
+        //via the pg object and then removing errored client from the pool
+        client.on('error', function(e) {
+          pool.emit('error', e, client);
+
+          // If the client is already being destroyed, the error
+          // occurred during stream ending. Do not attempt to destroy
+          // the client again.
+          if (!client._destroying) {
+            pool.destroy(client);
+          }
+        });
+
+        // Remove connection from pool on disconnect
+        client.on('end', function(e) {
+          // Do not enter infinite loop between pool.destroy
+          // and client 'end' event...
+          if ( ! client._destroying ) {
+            pool.destroy(client);
+          }
+        });
+        client.poolCount = 0;
+        return cb(null, client);
+      });
+    },
+    destroy: function(client) {
+      client._destroying = true;
+      client.poolCount = undefined;
+      client.end();
+    }
+  });
+  pools.all[name] = pool;
+  //mixin EventEmitter to pool
+  EventEmitter.call(pool);
+  for(var key in EventEmitter.prototype) {
+    if(EventEmitter.prototype.hasOwnProperty(key)) {
+      pool[key] = EventEmitter.prototype[key];
+    }
+  }
+  //monkey-patch with connect method
+  pool.connect = function(cb) {
+    var domain = process.domain;
+    pool.acquire(function(err, client) {
+      if(domain) {
+        cb = domain.bind(cb);
+      }
+      if(err)  return cb(err, null, function() {/*NOOP*/});
+      client.poolCount++;
+      cb(null, client, function(err) {
+        if(err) {
+          pool.destroy(client);
+        } else {
+          pool.release(client);
+        }
+      });
+    });
+  };
+  return pool;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pg.js.result" id="apidoc.module.pg.js.result">module pg.js.result</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.result.result" id="apidoc.element.pg.js.result.result">
+        function <span class="apidocSignatureSpan">pg.js.</span>result
+        <span class="apidocSignatureSpan">(rowMode)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">result = function (rowMode) {
+  this.command = null;
+  this.rowCount = null;
+  this.oid = null;
+  this.rows = [];
+  this.fields = [];
+  this._parsers = [];
+  this.RowCtor = null;
+  this.rowAsArray = rowMode == "array";
+  if(this.rowAsArray) {
+    this.parseRow = this._parseRowAsArray;
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pg.js.result.prototype" id="apidoc.module.pg.js.result.prototype">module pg.js.result.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.result.prototype._getTypeParser" id="apidoc.element.pg.js.result.prototype._getTypeParser">
+        function <span class="apidocSignatureSpan">pg.js.result.prototype.</span>_getTypeParser
+        <span class="apidocSignatureSpan">(oid, format)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_getTypeParser = function (oid, format) {
+  format = format || 'text';
+  if (!typeParsers[format]) {
+    return noParse;
+  }
+  return typeParsers[format][oid] || noParse;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  this.fields = [];
+  this._parsers = [];
+}
+var ctorBody = "";
+for(var i = 0; i &lt; fieldDescriptions.length; i++) {
+  var desc = fieldDescriptions[i];
+  this.fields.push(desc);
+  var parser = this.<span class="apidocCodeKeywordSpan">_getTypeParser</span>(desc.dataTypeID, desc.format || 'text');
+  this._parsers.push(parser);
+  //this is some craziness to compile the row result parsing
+  //results in ~60% speedup on large query result sets
+  ctorBody += inlineParser(desc.name, i);
+}
+if(!this.rowAsArray) {
+  this.RowCtor = Function("parsers", "rowData", ctorBody);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.result.prototype._parseRowAsArray" id="apidoc.element.pg.js.result.prototype._parseRowAsArray">
+        function <span class="apidocSignatureSpan">pg.js.result.prototype.</span>_parseRowAsArray
+        <span class="apidocSignatureSpan">(rowData)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_parseRowAsArray = function (rowData) {
+  var row = [];
+  for(var i = 0, len = rowData.length; i &lt; len; i++) {
+    var rawValue = rowData[i];
+    if(rawValue !== null) {
+      row.push(this._parsers[i](rawValue));
+    } else {
+      row.push(null);
+    }
+  }
+  return row;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.result.prototype.addCommandComplete" id="apidoc.element.pg.js.result.prototype.addCommandComplete">
+        function <span class="apidocSignatureSpan">pg.js.result.prototype.</span>addCommandComplete
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">addCommandComplete = function (msg) {
+  var match;
+  if(msg.text) {
+    //pure javascript
+    match = matchRegexp.exec(msg.text);
+  } else {
+    //native bindings
+    match = matchRegexp.exec(msg.command);
+  }
+  if(match) {
+    this.command = match[1];
+    //match 3 will only be existing on insert commands
+    if(match[3]) {
+      //msg.value is from native bindings
+      this.rowCount = parseInt(match[3] || msg.value, 10);
+      this.oid = parseInt(match[2], 10);
+    } else {
+      this.rowCount = parseInt(match[2], 10);
+    }
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.result.prototype.addFields" id="apidoc.element.pg.js.result.prototype.addFields">
+        function <span class="apidocSignatureSpan">pg.js.result.prototype.</span>addFields
+        <span class="apidocSignatureSpan">(fieldDescriptions)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">addFields = function (fieldDescriptions) {
+  //clears field definitions
+  //multiple query statements in 1 action can result in multiple sets
+  //of rowDescriptions...eg: 'select NOW(); select 1::int;'
+  //you need to reset the fields
+  if(this.fields.length) {
+    this.fields = [];
+    this._parsers = [];
+  }
+  var ctorBody = "";
+  for(var i = 0; i &lt; fieldDescriptions.length; i++) {
+    var desc = fieldDescriptions[i];
+    this.fields.push(desc);
+    var parser = this._getTypeParser(desc.dataTypeID, desc.format || 'text');
+    this._parsers.push(parser);
+    //this is some craziness to compile the row result parsing
+    //results in ~60% speedup on large query result sets
+    ctorBody += inlineParser(desc.name, i);
+  }
+  if(!this.rowAsArray) {
+    this.RowCtor = Function("parsers", "rowData", ctorBody);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.result.prototype.addRow" id="apidoc.element.pg.js.result.prototype.addRow">
+        function <span class="apidocSignatureSpan">pg.js.result.prototype.</span>addRow
+        <span class="apidocSignatureSpan">(row)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">addRow = function (row) {
+  this.rows.push(row);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.result.prototype.parseRow" id="apidoc.element.pg.js.result.prototype.parseRow">
+        function <span class="apidocSignatureSpan">pg.js.result.prototype.</span>parseRow
+        <span class="apidocSignatureSpan">(rowData)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseRow = function (rowData) {
+  return new this.RowCtor(this._parsers, rowData);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pg.js.type_overrides" id="apidoc.module.pg.js.type_overrides">module pg.js.type_overrides</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.type_overrides.type_overrides" id="apidoc.element.pg.js.type_overrides.type_overrides">
+        function <span class="apidocSignatureSpan">pg.js.</span>type_overrides
+        <span class="apidocSignatureSpan">(userTypes)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function TypeOverrides(userTypes) {
+  this._types = userTypes || types;
+  this.text = {};
+  this.binary = {};
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pg.js.type_overrides.prototype" id="apidoc.module.pg.js.type_overrides.prototype">module pg.js.type_overrides.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.type_overrides.prototype.getOverrides" id="apidoc.element.pg.js.type_overrides.prototype.getOverrides">
+        function <span class="apidocSignatureSpan">pg.js.type_overrides.prototype.</span>getOverrides
+        <span class="apidocSignatureSpan">(format)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getOverrides = function (format) {
+  switch(format) {
+    case 'text': return this.text;
+    case 'binary': return this.binary;
+    default: return {};
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+};
+
+TypeOverrides.prototype.setTypeParser = function(oid, format, parseFn) {
+  if(typeof format == 'function') {
+    parseFn = format;
+    format = 'text';
+  }
+  this.<span class="apidocCodeKeywordSpan">getOverrides</span>(format)[oid] = parseFn;
+};
+
+TypeOverrides.prototype.getTypeParser = function(oid, format) {
+  format = format || 'text';
+  return this.getOverrides(format)[oid] || this._types.getTypeParser(oid, format);
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.type_overrides.prototype.getTypeParser" id="apidoc.element.pg.js.type_overrides.prototype.getTypeParser">
+        function <span class="apidocSignatureSpan">pg.js.type_overrides.prototype.</span>getTypeParser
+        <span class="apidocSignatureSpan">(oid, format)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getTypeParser = function (oid, format) {
+  format = format || 'text';
+  return this.getOverrides(format)[oid] || this._types.getTypeParser(oid, format);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    format = 'text';
+  }
+  this.getOverrides(format)[oid] = parseFn;
+};
+
+TypeOverrides.prototype.getTypeParser = function(oid, format) {
+  format = format || 'text';
+  return this.getOverrides(format)[oid] || this._types.<span class="apidocCodeKeywordSpan">getTypeParser</span>(oid, format);
+};
+
+module.exports = TypeOverrides;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.type_overrides.prototype.setTypeParser" id="apidoc.element.pg.js.type_overrides.prototype.setTypeParser">
+        function <span class="apidocSignatureSpan">pg.js.type_overrides.prototype.</span>setTypeParser
+        <span class="apidocSignatureSpan">(oid, format, parseFn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">setTypeParser = function (oid, format, parseFn) {
+  if(typeof format == 'function') {
+    parseFn = format;
+    format = 'text';
+  }
+  this.getOverrides(format)[oid] = parseFn;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  application_name : undefined,
+  fallback_application_name: undefined
+};
+
+//parse int8 so you can get your count values as actual numbers
+module.exports.__defineSetter__("parseInt8", function(val) {
+  require('pg-types').<span class="apidocCodeKeywordSpan">setTypeParser</span>(20, 'text', val ? parseInt :
+function(val) { return val; });
+});
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pg.js.types" id="apidoc.module.pg.js.types">module pg.js.types</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.types.getTypeParser" id="apidoc.element.pg.js.types.getTypeParser">
+        function <span class="apidocSignatureSpan">pg.js.types.</span>getTypeParser
+        <span class="apidocSignatureSpan">(oid, format)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getTypeParser = function (oid, format) {
+  format = format || 'text';
+  if (!typeParsers[format]) {
+    return noParse;
+  }
+  return typeParsers[format][oid] || noParse;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    format = 'text';
+  }
+  this.getOverrides(format)[oid] = parseFn;
+};
+
+TypeOverrides.prototype.getTypeParser = function(oid, format) {
+  format = format || 'text';
+  return this.getOverrides(format)[oid] || this._types.<span class="apidocCodeKeywordSpan">getTypeParser</span>(oid, format);
+};
+
+module.exports = TypeOverrides;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.types.setTypeParser" id="apidoc.element.pg.js.types.setTypeParser">
+        function <span class="apidocSignatureSpan">pg.js.types.</span>setTypeParser
+        <span class="apidocSignatureSpan">(oid, format, parseFn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">setTypeParser = function (oid, format, parseFn) {
+  if(typeof format == 'function') {
+    parseFn = format;
+    format = 'text';
+  }
+  typeParsers[format][oid] = parseFn;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  application_name : undefined,
+  fallback_application_name: undefined
+};
+
+//parse int8 so you can get your count values as actual numbers
+module.exports.__defineSetter__("parseInt8", function(val) {
+  require('pg-types').<span class="apidocCodeKeywordSpan">setTypeParser</span>(20, 'text', val ? parseInt :
+function(val) { return val; });
+});
+...</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pg.js.types.arrayParser" id="apidoc.module.pg.js.types.arrayParser">module pg.js.types.arrayParser</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.types.arrayParser.create" id="apidoc.element.pg.js.types.arrayParser.create">
+        function <span class="apidocSignatureSpan">pg.js.types.arrayParser.</span>create
+        <span class="apidocSignatureSpan">(source, converter)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">create = function (source, converter){
+  return new ArrayParser(source, converter);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pg.js.utils" id="apidoc.module.pg.js.utils">module pg.js.utils</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.utils.normalizeQueryConfig" id="apidoc.element.pg.js.utils.normalizeQueryConfig">
+        function <span class="apidocSignatureSpan">pg.js.utils.</span>normalizeQueryConfig
+        <span class="apidocSignatureSpan">(config, values, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function normalizeQueryConfig(config, values, callback) {
+  //can take in strings or config objects
+  config = (typeof(config) == 'string') ? { text: config } : config;
+  if(values) {
+    if(typeof values === 'function') {
+      config.callback = values;
+    } else {
+      config.values = values;
+    }
+  }
+  if(callback) {
+    config.callback = callback;
+  }
+  return config;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.utils.prepareValue" id="apidoc.element.pg.js.utils.prepareValue">
+        function <span class="apidocSignatureSpan">pg.js.utils.</span>prepareValue
+        <span class="apidocSignatureSpan">(val, seen)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">prepareValue = function (val, seen) {
+  if (val instanceof Buffer) {
+    return val;
+  }
+  if(val instanceof Date) {
+    return dateToString(val);
+  }
+  if(Array.isArray(val)) {
+    return arrayString(val);
+  }
+  if(val === null || typeof val === 'undefined') {
+    return null;
+  }
+  if(typeof val === 'object') {
+    return prepareObject(val, seen);
+  }
+  return val.toString();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
