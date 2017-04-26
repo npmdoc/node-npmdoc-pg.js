@@ -1,6 +1,6 @@
 # npmdoc-pg.js
 
-#### api documentation for  [pg.js (v4.1.1)](http://github.com/brianc/node-postgres-pure)  [![npm package](https://img.shields.io/npm/v/npmdoc-pg.js.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-pg.js) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-pg.js.svg)](https://travis-ci.org/npmdoc/node-npmdoc-pg.js)
+#### basic api documentation for  [pg.js (v4.1.1)](http://github.com/brianc/node-postgres-pure)  [![npm package](https://img.shields.io/npm/v/npmdoc-pg.js.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-pg.js) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-pg.js.svg)](https://travis-ci.org/npmdoc/node-npmdoc-pg.js)
 
 #### node-postgres without the bindings
 
@@ -62,7 +62,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "version": "4.1.1"
+    "version": "4.1.1",
+    "bin": {}
 }
 ```
 
