@@ -119,6 +119,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.js.query">
+            function <span class="apidocSignatureSpan">pg.js.</span>js.query
+            <span class="apidocSignatureSpan">(native)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <a class="apidocElementLiA" href="#apidoc.element.pg.js.js.result">
             function <span class="apidocSignatureSpan">pg.js.</span>js.result
             <span class="apidocSignatureSpan">(rowMode)</span>
@@ -186,6 +195,12 @@
         <li>
 
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pg.js.</span>js.pools</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pg.js.</span>js.query.prototype</span>
 
         </li>
 
@@ -977,6 +992,50 @@
 
     </ol></li>
 
+    <li class="apidocModuleLi"><a href="#apidoc.module.pg.js.query">module pg.js.query</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.query.query">
+            function <span class="apidocSignatureSpan">pg.js.</span>query
+            <span class="apidocSignatureSpan">(native)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.query.super_">
+            function <span class="apidocSignatureSpan">pg.js.query.</span>super_
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pg.js.query.prototype">module pg.js.query.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.query.prototype.handleError">
+            function <span class="apidocSignatureSpan">pg.js.query.prototype.</span>handleError
+            <span class="apidocSignatureSpan">(err)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pg.js.query.prototype.submit">
+            function <span class="apidocSignatureSpan">pg.js.query.prototype.</span>submit
+            <span class="apidocSignatureSpan">(client)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
     <li class="apidocModuleLi"><a href="#apidoc.module.pg.js.result">module pg.js.result</a><ol>
 
         <li>
@@ -1193,7 +1252,23 @@
   this.secretKey = null;
   this.ssl = this.connectionParameters.ssl || false;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  return client.cancel(query);
+}
+var c = config;
+//allow for no config to be passed
+if(typeof c === 'function') {
+  c = defaults;
+}
+var cancellingClient = new this.<span class="apidocCodeKeywordSpan">Client</span>(c);
+cancellingClient.cancel(client, query);
+};
+
+if(typeof process.env.NODE_PG_FORCE_NATIVE != 'undefined') {
+module.exports = new PG(require('./native'));
+} else {
+module.exports = new PG(Client);
+...</pre></li>
     </ul>
 
 
@@ -1412,6 +1487,38 @@
 
 
     <h2>
+        <a href="#apidoc.element.pg.js.js.query" id="apidoc.element.pg.js.js.query">
+        function <span class="apidocSignatureSpan">pg.js.</span>js.query
+        <span class="apidocSignatureSpan">(native)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">js.query = function (native) {
+  EventEmitter.call(this);
+  this.native = native;
+  this.text = null;
+  this.values = null;
+  this.name = null;
+  this.callback = null;
+  this.state = 'new';
+  this._arrayMode = false;
+
+  //if the 'row' event is listened for
+  //then emit them as they come in
+  //without setting singleRowMode to true
+  //this has almost no meaning because libpq
+  //reads all rows into memory befor returning any
+  this._emitRowEvents = false;
+  this.on('newListener', function(event) {
+    if(event === 'row') this._emitRowEvents = true;
+  }.bind(this));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
         <a href="#apidoc.element.pg.js.js.result" id="apidoc.element.pg.js.js.result">
         function <span class="apidocSignatureSpan">pg.js.</span>js.result
         <span class="apidocSignatureSpan">(rowMode)</span>
@@ -1484,6 +1591,8 @@
 
 
 
+
+
 </div>
 
 <div class="apidocSectionDiv">
@@ -1522,7 +1631,23 @@
   this.secretKey = null;
   this.ssl = this.connectionParameters.ssl || false;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  return client.cancel(query);
+}
+var c = config;
+//allow for no config to be passed
+if(typeof c === 'function') {
+  c = defaults;
+}
+var cancellingClient = new this.<span class="apidocCodeKeywordSpan">Client</span>(c);
+cancellingClient.cancel(client, query);
+};
+
+if(typeof process.env.NODE_PG_FORCE_NATIVE != 'undefined') {
+module.exports = new PG(require('./native'));
+} else {
+module.exports = new PG(Client);
+...</pre></li>
     </ul>
 
 
@@ -1573,7 +1698,23 @@
     <li>description and source-code<pre class="apidocCodePre">md5 = function (string) {
   return crypto.createHash('md5').update(string).digest('hex');
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+//password request handling
+con.on('authenticationCleartextPassword', checkPgPass(function() {
+  con.password(self.password);
+}));
+
+//password request handling
+con.on('authenticationMD5Password', checkPgPass(function(msg) {
+  var inner = Client.<span class="apidocCodeKeywordSpan">md5</span>(self.password + self.user);
+  var outer = Client.md5(inner + msg.salt.toString('binary'));
+  var md5password = "md5" + outer;
+  con.password(md5password);
+}));
+
+con.once('backendKeyData', function(msg) {
+  self.processID = msg.processID;
+...</pre></li>
     </ul>
 
 
@@ -1618,7 +1759,23 @@
     }
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  self.emit('connect');
+});
+
+con.on('readyForQuery', function() {
+  var activeQuery = self.activeQuery;
+  self.activeQuery = null;
+  self.readyForQuery = true;
+  self.<span class="apidocCodeKeywordSpan">_pulseQueryQueue</span>();
+  if(activeQuery) {
+    activeQuery.handleReadyForQuery();
+  }
+});
+
+con.on('error', function(error) {
+  if(self.activeQuery) {
+...</pre></li>
     </ul>
 
 
@@ -1648,7 +1805,23 @@
     client.queryQueue.splice(client.queryQueue.indexOf(query), 1);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+      con.connect(this.host + '/.s.PGSQL.' + this.port);
+    } else {
+      con.connect(this.port, this.host);
+    }
+
+    //once connection is established send cancel message
+    con.on('connect', function() {
+      con.<span class="apidocCodeKeywordSpan">cancel</span>(client.processID, client.secretKey);
+    });
+  } else if(client.queryQueue.indexOf(query) != -1) {
+    client.queryQueue.splice(client.queryQueue.indexOf(query), 1);
+  }
+};
+
+Client.prototype.setTypeParser = function(oid, format, parseFn) {
+...</pre></li>
     </ul>
 
 
@@ -1979,7 +2152,22 @@ pg.connect(function(err, client, done) {
 
   return data;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+
+//once connection is established send startup message
+con.on('connect', function() {
+  if(self.ssl) {
+    con.requestSsl();
+  } else {
+    con.startup(self.<span class="apidocCodeKeywordSpan">getStartupConf</span>());
+  }
+});
+
+con.on('sslconnect', function() {
+  con.startup(self.getStartupConf());
+});
+...</pre></li>
     </ul>
 
 
@@ -1995,17 +2183,20 @@ pg.connect(function(err, client, done) {
   return this._types.getTypeParser(oid, format);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    format = 'text';
-  }
-  this.getOverrides(format)[oid] = parseFn;
 };
 
-TypeOverrides.prototype.getTypeParser = function(oid, format) {
-  format = format || 'text';
-  return this.getOverrides(format)[oid] || this._types.<span class="apidocCodeKeywordSpan">getTypeParser</span>(oid, format);
+Client.prototype.setTypeParser = function(oid, format, parseFn) {
+return this._types.setTypeParser(oid, format, parseFn);
 };
 
-module.exports = TypeOverrides;
+Client.prototype.getTypeParser = function(oid, format) {
+return this._types.<span class="apidocCodeKeywordSpan">getTypeParser</span>(oid, format);
+};
+
+// Ported from PostgreSQL 9.2.4 source code in src/interfaces/libpq/fe-exec.c
+Client.prototype.escapeIdentifier = function(str) {
+
+var escaped = '"';
 ...</pre></li>
     </ul>
 
@@ -2064,16 +2255,21 @@ pg.connect(function(err, client, release) {
   return this._types.setTypeParser(oid, format, parseFn);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-
-  application_name : undefined,
-  fallback_application_name: undefined
+    });
+  } else if(client.queryQueue.indexOf(query) != -1) {
+    client.queryQueue.splice(client.queryQueue.indexOf(query), 1);
+  }
 };
 
-//parse int8 so you can get your count values as actual numbers
-module.exports.__defineSetter__("parseInt8", function(val) {
-  require('pg-types').<span class="apidocCodeKeywordSpan">setTypeParser</span>(20, 'text', val ? parseInt :
-function(val) { return val; });
-});
+Client.prototype.setTypeParser = function(oid, format, parseFn) {
+  return this._types.<span class="apidocCodeKeywordSpan">setTypeParser</span>(oid, format, parseFn);
+};
+
+Client.prototype.getTypeParser = function(oid, format) {
+  return this._types.getTypeParser(oid, format);
+};
+
+// Ported from PostgreSQL 9.2.4 source code in src/interfaces/libpq/fe-exec.c
 ...</pre></li>
     </ul>
 
@@ -2157,7 +2353,23 @@ function(val) { return val; });
   }
   return this.readBytes(buffer, length);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+
+//extremely hot-path code
+Connection.prototype.parseD = function(buffer, length) {
+var fieldCount = this.parseInt16(buffer);
+var msg = new DataRowMessage(length, fieldCount);
+for(var i = 0; i &lt; fieldCount; i++) {
+  msg.fields.push(this.<span class="apidocCodeKeywordSpan">_readValue</span>(buffer));
+}
+return msg;
+};
+
+//extremely hot-path code
+Connection.prototype._readValue = function(buffer) {
+var length = this.parseInt32(buffer);
+...</pre></li>
     </ul>
 
 
@@ -2177,7 +2389,23 @@ function(val) { return val; });
     return this.stream.write(this.writer.flush(code));
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  .add(bodyBuffer)
+  .join();
+this.stream.write(buffer);
+};
+
+Connection.prototype.password = function(password) {
+//0x70 = 'p'
+this.<span class="apidocCodeKeywordSpan">_send</span>(0x70, this.writer.addCString(password));
+};
+
+Connection.prototype._send = function(code, more) {
+if(!this.stream.writable) { return false; }
+if(more === true) {
+  this.writer.addHeader(code);
+} else {
+...</pre></li>
     </ul>
 
 
@@ -2204,7 +2432,23 @@ function(val) { return val; });
     }
   });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  // NOTE: node-0.10 emits both 'end' and 'close'
+  //       for streams closed by the peer, while
+  //       node-0.8 only emits 'close'
+  self.emit('end');
+});
+
+if(!this.ssl) {
+  return this.<span class="apidocCodeKeywordSpan">attachListeners</span>(this.stream);
+}
+
+this.stream.once('data', function(buffer) {
+  var responseCode = buffer.toString('utf8');
+  if(responseCode != 'S') {
+    return self.emit('error', new Error('The server does not support SSL connections'));
+  }
+...</pre></li>
     </ul>
 
 
@@ -2261,7 +2505,22 @@ function(val) { return val; });
   //0x42 = 'B'
   this._send(0x42, more);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  //can take in strings, config object or query object
+  var query = (typeof config.submit == 'function') ? config :
+     new Query(config, values, callback);
+  if(this.binary &amp;&amp; !query.binary) {
+    query.binary = true;
+  }
+  if(query._result) {
+    query._result._getTypeParser = this._types.getTypeParser.<span class="apidocCodeKeywordSpan">bind</span>(this._types);
+  }
+
+  this.queryQueue.push(query);
+  this._pulseQueryQueue();
+  return query;
+};
+...</pre></li>
     </ul>
 
 
@@ -2289,7 +2548,23 @@ function(val) { return val; });
     .join();
   this.stream.write(buffer);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+      con.connect(this.host + '/.s.PGSQL.' + this.port);
+    } else {
+      con.connect(this.port, this.host);
+    }
+
+    //once connection is established send cancel message
+    con.on('connect', function() {
+      con.<span class="apidocCodeKeywordSpan">cancel</span>(client.processID, client.secretKey);
+    });
+  } else if(client.queryQueue.indexOf(query) != -1) {
+    client.queryQueue.splice(client.queryQueue.indexOf(query), 1);
+  }
+};
+
+Client.prototype.setTypeParser = function(oid, format, parseFn) {
+...</pre></li>
     </ul>
 
 
@@ -2408,7 +2683,22 @@ pg.<span class="apidocCodeKeywordSpan">connect</span>(function(err, client, rele
   this.writer.addCString(msg.type + (msg.name || ''));
   this._send(0x44, more);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  connection.bind({
+    portal: self.portalName,
+    statement: self.name,
+    values: self.values,
+    binary: self.binary
+  }, true);
+
+  connection.<span class="apidocCodeKeywordSpan">describe</span>({
+    type: 'P',
+    name: self.portalName || ""
+  }, true);
+
+  this._getRows(connection, this.rows);
+};
+...</pre></li>
     </ul>
 
 
@@ -2475,7 +2765,23 @@ pg.connect(function(err, client, done) {
   //0x45 = 'E'
   this._send(0x45, more);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+};
+
+Query.prototype.handlePortalSuspended = function(connection) {
+  this._getRows(connection, this.rows);
+};
+
+Query.prototype._getRows = function(connection, rows) {
+  connection.<span class="apidocCodeKeywordSpan">execute</span>({
+    portal: this.portalName,
+    rows: rows
+  }, true);
+  connection.flush();
+};
+
+Query.prototype.prepare = function(connection) {
+...</pre></li>
     </ul>
 
 
@@ -2492,7 +2798,23 @@ pg.connect(function(err, client, done) {
   this.writer.add(emptyBuffer);
   this._send(0x48);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+};
+
+Connection.prototype.requestSsl = function() {
+this.checkSslResponse = true;
+
+var bodyBuffer = this.writer
+  .addInt16(0x04D2)
+  .addInt16(0x162F).<span class="apidocCodeKeywordSpan">flush</span>();
+
+var length = bodyBuffer.length + 4;
+
+var buffer = new Writer()
+  .addInt32(length)
+  .add(bodyBuffer)
+  .join();
+...</pre></li>
     </ul>
 
 
@@ -2526,7 +2848,23 @@ pg.connect(function(err, client, done) {
   var code = 0x50;
   this._send(code, more);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Query.prototype.prepare = function(connection) {
+var self = this;
+//prepared statements need sync to be called after each command
+//complete or when an error is encountered
+this.isPreparedStatement = true;
+//TODO refactor this poor encapsulation
+if(!this.hasBeenParsed(connection)) {
+  connection.<span class="apidocCodeKeywordSpan">parse</span>({
+    text: self.text,
+    name: self.name,
+    types: self.types
+  }, true);
+}
+
+//TODO is there some better way to prepare values for the database?
+...</pre></li>
     </ul>
 
 
@@ -2545,7 +2883,22 @@ pg.connect(function(err, client, done) {
   msg.payload = this.parseCString(buffer);
   return msg;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+case 0x32: //2
+  return new Message('bindComplete', length);
+
+case 0x33: //3
+  return new Message('closeComplete', length);
+
+case 0x41: //A
+  return this.<span class="apidocCodeKeywordSpan">parseA</span>(buffer, length);
+
+case 0x6e: //n
+  return new Message('noData', length);
+
+case 0x49: //I
+  return new Message('emptyQuery', length);
+...</pre></li>
     </ul>
 
 
@@ -2562,7 +2915,22 @@ pg.connect(function(err, client, done) {
   msg.text = this.parseCString(buffer);
   return msg;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+case 0x53: //S
+  return this.parseS(buffer, length);
+
+case 0x4b: //K
+  return this.parseK(buffer, length);
+
+case 0x43: //C
+  return this.<span class="apidocCodeKeywordSpan">parseC</span>(buffer, length);
+
+case 0x5a: //Z
+  return this.parseZ(buffer, length);
+
+case 0x54: //T
+  return this.parseT(buffer, length);
+...</pre></li>
     </ul>
 
 
@@ -2579,7 +2947,23 @@ pg.connect(function(err, client, done) {
   while(buffer[this.offset++] !== 0) { }
   return buffer.toString(this.encoding, start, this.offset - 1);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+}
+throw new Error("Unknown authenticatinOk message type" + util.inspect(msg));
+};
+
+Connection.prototype.parseS = function(buffer, length) {
+var msg = new Message('parameterStatus', length);
+msg.parameterName = this.<span class="apidocCodeKeywordSpan">parseCString</span>(buffer);
+msg.parameterValue = this.parseCString(buffer);
+return msg;
+};
+
+Connection.prototype.parseK = function(buffer, length) {
+var msg = new Message('backendKeyData', length);
+msg.processID = this.parseInt32(buffer);
+...</pre></li>
     </ul>
 
 
@@ -2599,7 +2983,22 @@ pg.connect(function(err, client, done) {
   }
   return msg;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+case 0x5a: //Z
+  return this.parseZ(buffer, length);
+
+case 0x54: //T
+  return this.parseT(buffer, length);
+
+case 0x44: //D
+  return this.<span class="apidocCodeKeywordSpan">parseD</span>(buffer, length);
+
+case 0x45: //E
+  return this.parseE(buffer, length);
+
+case 0x4e: //N
+  return this.parseN(buffer, length);
+...</pre></li>
     </ul>
 
 
@@ -2647,7 +3046,22 @@ pg.connect(function(err, client, done) {
   msg.routine = fields.R;
   return msg;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+case 0x54: //T
+  return this.parseT(buffer, length);
+
+case 0x44: //D
+  return this.parseD(buffer, length);
+
+case 0x45: //E
+  return this.<span class="apidocCodeKeywordSpan">parseE</span>(buffer, length);
+
+case 0x4e: //N
+  return this.parseN(buffer, length);
+
+case 0x31: //1
+  return new Message('parseComplete', length);
+...</pre></li>
     </ul>
 
 
@@ -2676,7 +3090,23 @@ pg.connect(function(err, client, done) {
   }
   return field;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+var ROW_DESCRIPTION = 'rowDescription';
+Connection.prototype.parseT = function(buffer, length) {
+var msg = new Message(ROW_DESCRIPTION, length);
+msg.fieldCount = this.parseInt16(buffer);
+var fields = [];
+for(var i = 0; i &lt; msg.fieldCount; i++){
+  fields.push(this.<span class="apidocCodeKeywordSpan">parseField</span>(buffer));
+}
+msg.fields = fields;
+return msg;
+};
+
+var Field = function() {
+this.name = null;
+...</pre></li>
     </ul>
 
 
@@ -2692,7 +3122,22 @@ pg.connect(function(err, client, done) {
   var msg = new Message('copyInResponse', length);
   return this.parseGH(buffer, msg);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+case 0x49: //I
+  return new Message('emptyQuery', length);
+
+case 0x73: //s
+  return new Message('portalSuspended', length);
+
+case 0x47: //G
+  return this.<span class="apidocCodeKeywordSpan">parseG</span>(buffer, length);
+
+case 0x48: //H
+  return this.parseH(buffer, length);
+
+case 0x63: //c
+  return new Message('copyDone', length);
+...</pre></li>
     </ul>
 
 
@@ -2715,7 +3160,22 @@ pg.connect(function(err, client, done) {
   }
   return msg;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  msg.channel = this.parseCString(buffer);
+  msg.payload = this.parseCString(buffer);
+  return msg;
+};
+
+Connection.prototype.parseG = function (buffer, length) {
+  var msg = new Message('copyInResponse', length);
+  return this.<span class="apidocCodeKeywordSpan">parseGH</span>(buffer, msg);
+};
+
+Connection.prototype.parseH = function(buffer, length) {
+  var msg = new Message('copyOutResponse', length);
+  return this.parseGH(buffer, msg);
+};
+...</pre></li>
     </ul>
 
 
@@ -2731,7 +3191,23 @@ pg.connect(function(err, client, done) {
   var msg = new Message('copyOutResponse', length);
   return this.parseGH(buffer, msg);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+case 0x73: //s
+  return new Message('portalSuspended', length);
+
+case 0x47: //G
+  return this.parseG(buffer, length);
+
+case 0x48: //H
+  return this.<span class="apidocCodeKeywordSpan">parseH</span>(buffer, length);
+
+case 0x63: //c
+  return new Message('copyDone', length);
+
+case 0x64: //d
+  return this.parsed(buffer, length);
+}
+...</pre></li>
     </ul>
 
 
@@ -2748,7 +3224,23 @@ pg.connect(function(err, client, done) {
   this.offset += 2;
   return value;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  msg.status = this.readString(buffer, 1);
+  return msg;
+};
+
+var ROW_DESCRIPTION = 'rowDescription';
+Connection.prototype.parseT = function(buffer, length) {
+  var msg = new Message(ROW_DESCRIPTION, length);
+  msg.fieldCount = this.<span class="apidocCodeKeywordSpan">parseInt16</span>(buffer);
+  var fields = [];
+  for(var i = 0; i &lt; msg.fieldCount; i++){
+    fields.push(this.parseField(buffer));
+  }
+  msg.fields = fields;
+  return msg;
+};
+...</pre></li>
     </ul>
 
 
@@ -2765,7 +3257,23 @@ pg.connect(function(err, client, done) {
   this.offset += 4;
   return value;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+};
+
+Connection.prototype.parseR = function(buffer, length) {
+var code = 0;
+var msg = new Message('authenticationOk', length);
+if(msg.length === 8) {
+  code = this.<span class="apidocCodeKeywordSpan">parseInt32</span>(buffer);
+  if(code === 3) {
+    msg.name = 'authenticationCleartextPassword';
+  }
+  return msg;
+}
+if(msg.length === 12) {
+  code = this.parseInt32(buffer);
+...</pre></li>
     </ul>
 
 
@@ -2783,7 +3291,22 @@ pg.connect(function(err, client, done) {
   msg.secretKey = this.parseInt32(buffer);
   return msg;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+case 0x52: //R
+  return this.parseR(buffer, length);
+
+case 0x53: //S
+  return this.parseS(buffer, length);
+
+case 0x4b: //K
+  return this.<span class="apidocCodeKeywordSpan">parseK</span>(buffer, length);
+
+case 0x43: //C
+  return this.parseC(buffer, length);
+
+case 0x5a: //Z
+  return this.parseZ(buffer, length);
+...</pre></li>
     </ul>
 
 
@@ -2863,7 +3386,23 @@ pg.connect(function(err, client, done) {
     return this.parsed(buffer, length);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Connection.prototype.attachListeners = function(stream) {
+var self = this;
+stream.on('data', function(buff) {
+  self._reader.addChunk(buff);
+  var packet = self._reader.read();
+  while(packet) {
+    var msg = self.<span class="apidocCodeKeywordSpan">parseMessage</span>(packet);
+    if(self._emitMessage) {
+      self.emit('message', msg);
+    }
+    self.emit(msg.name, msg);
+    packet = self._reader.read();
+  }
+});
+...</pre></li>
     </ul>
 
 
@@ -2880,7 +3419,22 @@ pg.connect(function(err, client, done) {
   msg.name = 'notice';
   return msg;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+case 0x44: //D
+  return this.parseD(buffer, length);
+
+case 0x45: //E
+  return this.parseE(buffer, length);
+
+case 0x4e: //N
+  return this.<span class="apidocCodeKeywordSpan">parseN</span>(buffer, length);
+
+case 0x31: //1
+  return new Message('parseComplete', length);
+
+case 0x32: //2
+  return new Message('bindComplete', length);
+...</pre></li>
     </ul>
 
 
@@ -2914,7 +3468,22 @@ pg.connect(function(err, client, done) {
   }
   throw new Error("Unknown authenticatinOk message type" + util.inspect(msg));
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+this.offset = 0;
+var length = buffer.length + 4;
+switch(this._reader.header)
+{
+
+case 0x52: //R
+  return this.<span class="apidocCodeKeywordSpan">parseR</span>(buffer, length);
+
+case 0x53: //S
+  return this.parseS(buffer, length);
+
+case 0x4b: //K
+  return this.parseK(buffer, length);
+...</pre></li>
     </ul>
 
 
@@ -2932,7 +3501,22 @@ pg.connect(function(err, client, done) {
   msg.parameterValue = this.parseCString(buffer);
   return msg;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+switch(this._reader.header)
+{
+
+case 0x52: //R
+  return this.parseR(buffer, length);
+
+case 0x53: //S
+  return this.<span class="apidocCodeKeywordSpan">parseS</span>(buffer, length);
+
+case 0x4b: //K
+  return this.parseK(buffer, length);
+
+case 0x43: //C
+  return this.parseC(buffer, length);
+...</pre></li>
     </ul>
 
 
@@ -2954,7 +3538,22 @@ pg.connect(function(err, client, done) {
   msg.fields = fields;
   return msg;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+case 0x43: //C
+  return this.parseC(buffer, length);
+
+case 0x5a: //Z
+  return this.parseZ(buffer, length);
+
+case 0x54: //T
+  return this.<span class="apidocCodeKeywordSpan">parseT</span>(buffer, length);
+
+case 0x44: //D
+  return this.parseD(buffer, length);
+
+case 0x45: //E
+  return this.parseE(buffer, length);
+...</pre></li>
     </ul>
 
 
@@ -2972,7 +3571,22 @@ pg.connect(function(err, client, done) {
   msg.status = this.readString(buffer, 1);
   return msg;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+case 0x4b: //K
+  return this.parseK(buffer, length);
+
+case 0x43: //C
+  return this.parseC(buffer, length);
+
+case 0x5a: //Z
+  return this.<span class="apidocCodeKeywordSpan">parseZ</span>(buffer, length);
+
+case 0x54: //T
+  return this.parseT(buffer, length);
+
+case 0x44: //D
+  return this.parseD(buffer, length);
+...</pre></li>
     </ul>
 
 
@@ -2989,7 +3603,23 @@ pg.connect(function(err, client, done) {
   msg.chunk = this.readBytes(buffer, msg.length - 4);
   return msg;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+case 0x48: //H
+  return this.parseH(buffer, length);
+
+case 0x63: //c
+  return new Message('copyDone', length);
+
+case 0x64: //d
+  return this.<span class="apidocCodeKeywordSpan">parsed</span>(buffer, length);
+}
+};
+
+Connection.prototype.parseR = function(buffer, length) {
+var code = 0;
+var msg = new Message('authenticationOk', length);
+if(msg.length === 8) {
+...</pre></li>
     </ul>
 
 
@@ -3005,7 +3635,23 @@ pg.connect(function(err, client, done) {
   //0x70 = 'p'
   this._send(0x70, this.writer.addCString(password));
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+      });
+    }
+  };
+}
+
+//password request handling
+con.on('authenticationCleartextPassword', checkPgPass(function() {
+  con.<span class="apidocCodeKeywordSpan">password</span>(self.password);
+}));
+
+//password request handling
+con.on('authenticationMD5Password', checkPgPass(function(msg) {
+  var inner = Client.md5(self.password + self.user);
+  var outer = Client.md5(inner + msg.salt.toString('binary'));
+  var md5password = "md5" + outer;
+...</pre></li>
     </ul>
 
 
@@ -3051,7 +3697,23 @@ pg.connect(function(err, client, release) {
     <li>description and source-code<pre class="apidocCodePre">readBytes = function (buffer, length) {
   return buffer.slice(this.offset, this.offset += length);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+//extremely hot-path code
+Connection.prototype._readValue = function(buffer) {
+var length = this.parseInt32(buffer);
+if(length === -1) return null;
+if(this._mode === TEXT_MODE) {
+  return this.readString(buffer, length);
+}
+return this.<span class="apidocCodeKeywordSpan">readBytes</span>(buffer, length);
+};
+
+//parses error
+Connection.prototype.parseE = function(buffer, length) {
+var fields = {};
+var msg, item;
+var input = new Message('error', length);
+...</pre></li>
     </ul>
 
 
@@ -3066,7 +3728,23 @@ pg.connect(function(err, client, release) {
     <li>description and source-code<pre class="apidocCodePre">readString = function (buffer, length) {
   return buffer.toString(this.encoding, this.offset, (this.offset += length));
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+msg.text = this.parseCString(buffer);
+return msg;
+};
+
+Connection.prototype.parseZ = function(buffer, length) {
+var msg = new Message('readyForQuery', length);
+msg.name = 'readyForQuery';
+msg.status = this.<span class="apidocCodeKeywordSpan">readString</span>(buffer, 1);
+return msg;
+};
+
+var ROW_DESCRIPTION = 'rowDescription';
+Connection.prototype.parseT = function(buffer, length) {
+var msg = new Message(ROW_DESCRIPTION, length);
+msg.fieldCount = this.parseInt16(buffer);
+...</pre></li>
     </ul>
 
 
@@ -3093,7 +3771,23 @@ pg.connect(function(err, client, release) {
     .join();
   this.stream.write(buffer);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  con.connect(this.port, this.host);
+}
+
+
+//once connection is established send startup message
+con.on('connect', function() {
+  if(self.ssl) {
+    con.<span class="apidocCodeKeywordSpan">requestSsl</span>();
+  } else {
+    con.startup(self.getStartupConf());
+  }
+});
+
+con.on('sslconnect', function() {
+  con.startup(self.getStartupConf());
+...</pre></li>
     </ul>
 
 
@@ -3110,7 +3804,23 @@ pg.connect(function(err, client, release) {
   this.writer.addCString(msg);
   this._send(0x66);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}, true);
+
+this._getRows(connection, this.rows);
+};
+
+Query.prototype.handleCopyInResponse = function (connection) {
+if(this.stream) this.stream.startStreamingToConnection(connection);
+else connection.<span class="apidocCodeKeywordSpan">sendCopyFail</span>('No source stream defined');
+};
+
+Query.prototype.handleCopyData = function (msg, connection) {
+var chunk = msg.chunk;
+if(this.stream) {
+  this.stream.handleChunk(chunk);
+}
+...</pre></li>
     </ul>
 
 
@@ -3161,7 +3871,22 @@ pg.connect(function(err, client, release) {
     .join();
   this.stream.write(buffer);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+
+//once connection is established send startup message
+con.on('connect', function() {
+  if(self.ssl) {
+    con.requestSsl();
+  } else {
+    con.<span class="apidocCodeKeywordSpan">startup</span>(self.getStartupConf());
+  }
+});
+
+con.on('sslconnect', function() {
+  con.startup(self.getStartupConf());
+});
+...</pre></li>
     </ul>
 
 
@@ -3181,7 +3906,23 @@ pg.connect(function(err, client, release) {
   this._ending = true;
   this._send(0x53);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+};
+
+Query.prototype.handleCommandComplete = function(msg, con) {
+this._result.addCommandComplete(msg);
+//need to sync after each command complete of a prepared statement
+if(this.isPreparedStatement) {
+  con.<span class="apidocCodeKeywordSpan">sync</span>();
+}
+};
+
+Query.prototype.handleReadyForQuery = function() {
+if(this._canceledDueToError) {
+  return this.handleError(this._canceledDueToError);
+}
+...</pre></li>
     </ul>
 
 
@@ -3261,7 +4002,23 @@ pg.connect(function(err, client, release) {
   }, true);
   connection.flush();
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+};
+
+Query.prototype.hasBeenParsed = function(connection) {
+return this.name &amp;&amp; connection.parsedStatements[this.name];
+};
+
+Query.prototype.handlePortalSuspended = function(connection) {
+this.<span class="apidocCodeKeywordSpan">_getRows</span>(connection, this.rows);
+};
+
+Query.prototype._getRows = function(connection, rows) {
+connection.execute({
+  portal: this.portalName,
+  rows: rows
+}, true);
+...</pre></li>
     </ul>
 
 
@@ -3280,7 +4037,23 @@ pg.connect(function(err, client, release) {
     con.sync();
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+//delegate portalSuspended to active query
+con.on('portalSuspended', function(msg) {
+  self.activeQuery.handlePortalSuspended(con);
+});
+
+//delegate commandComplete to active query
+con.on('commandComplete', function(msg) {
+  self.activeQuery.<span class="apidocCodeKeywordSpan">handleCommandComplete</span>(msg, con);
+});
+
+//if a prepared statement has a name and properly parses
+//we track that its already been executed so we don't parse
+//it again on the same client
+con.on('parseComplete', function(msg) {
+  if(self.activeQuery.name) {
+...</pre></li>
     </ul>
 
 
@@ -3301,7 +4074,23 @@ pg.connect(function(err, client, release) {
   //query method instead of copyTo) error will be handled
   //on copyOutResponse event, so silently ignore this error here
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+});
+
+con.on('copyInResponse', function(msg) {
+  self.activeQuery.handleCopyInResponse(self.connection);
+});
+
+con.on('copyData', function (msg) {
+  self.activeQuery.<span class="apidocCodeKeywordSpan">handleCopyData</span>(msg, self.connection);
+});
+
+con.on('notification', function(msg) {
+  self.emit('notification', msg);
+});
+
+//process possible callback argument to Client#connect
+...</pre></li>
     </ul>
 
 
@@ -3317,7 +4106,23 @@ pg.connect(function(err, client, release) {
   if(this.stream) this.stream.startStreamingToConnection(connection);
   else connection.sendCopyFail('No source stream defined');
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+con.on('parseComplete', function(msg) {
+  if(self.activeQuery.name) {
+    con.parsedStatements[self.activeQuery.name] = true;
+  }
+});
+
+con.on('copyInResponse', function(msg) {
+  self.activeQuery.<span class="apidocCodeKeywordSpan">handleCopyInResponse</span>(self.connection);
+});
+
+con.on('copyData', function (msg) {
+  self.activeQuery.handleCopyData(msg, self.connection);
+});
+
+con.on('notification', function(msg) {
+...</pre></li>
     </ul>
 
 
@@ -3338,7 +4143,22 @@ pg.connect(function(err, client, release) {
     this._result.addRow(row);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+//delegate rowDescription to active query
+con.on('rowDescription', function(msg) {
+  self.activeQuery.handleRowDescription(msg);
+});
+
+//delegate dataRow to active query
+con.on('dataRow', function(msg) {
+  self.activeQuery.<span class="apidocCodeKeywordSpan">handleDataRow</span>(msg);
+});
+
+//delegate portalSuspended to active query
+con.on('portalSuspended', function(msg) {
+  self.activeQuery.handlePortalSuspended(con);
+});
+...</pre></li>
     </ul>
 
 
@@ -3366,7 +4186,23 @@ pg.connect(function(err, client, release) {
   }
   this.emit('error', err);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+});
+
+con.on('error', function(error) {
+  if(self.activeQuery) {
+    var activeQuery = self.activeQuery;
+    self.activeQuery = null;
+    return activeQuery.<span class="apidocCodeKeywordSpan">handleError</span>(error, con);
+  }
+  if(!callback) {
+    return self.emit('error', error);
+  }
+  callback(error);
+  callback = null;
+});
+...</pre></li>
     </ul>
 
 
@@ -3381,7 +4217,22 @@ pg.connect(function(err, client, release) {
     <li>description and source-code<pre class="apidocCodePre">handlePortalSuspended = function (connection) {
   this._getRows(connection, this.rows);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+//delegate dataRow to active query
+con.on('dataRow', function(msg) {
+  self.activeQuery.handleDataRow(msg);
+});
+
+//delegate portalSuspended to active query
+con.on('portalSuspended', function(msg) {
+  self.activeQuery.<span class="apidocCodeKeywordSpan">handlePortalSuspended</span>(con);
+});
+
+//delegate commandComplete to active query
+con.on('commandComplete', function(msg) {
+  self.activeQuery.handleCommandComplete(msg, con);
+});
+...</pre></li>
     </ul>
 
 
@@ -3402,7 +4253,23 @@ pg.connect(function(err, client, release) {
   }
   this.emit('end', this._result);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+con.on('readyForQuery', function() {
+  var activeQuery = self.activeQuery;
+  self.activeQuery = null;
+  self.readyForQuery = true;
+  self._pulseQueryQueue();
+  if(activeQuery) {
+    activeQuery.<span class="apidocCodeKeywordSpan">handleReadyForQuery</span>();
+  }
+});
+
+con.on('error', function(error) {
+  if(self.activeQuery) {
+    var activeQuery = self.activeQuery;
+    self.activeQuery = null;
+...</pre></li>
     </ul>
 
 
@@ -3417,7 +4284,22 @@ pg.connect(function(err, client, release) {
     <li>description and source-code<pre class="apidocCodePre">handleRowDescription = function (msg) {
   this._result.addFields(msg.fields);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  //hook up query handling events to connection
+  //after the connection initially becomes ready for queries
+  con.once('readyForQuery', function() {
+
+//delegate rowDescription to active query
+con.on('rowDescription', function(msg) {
+  self.activeQuery.<span class="apidocCodeKeywordSpan">handleRowDescription</span>(msg);
+});
+
+//delegate dataRow to active query
+con.on('dataRow', function(msg) {
+  self.activeQuery.handleDataRow(msg);
+});
+...</pre></li>
     </ul>
 
 
@@ -3432,7 +4314,22 @@ pg.connect(function(err, client, release) {
     <li>description and source-code<pre class="apidocCodePre">hasBeenParsed = function (connection) {
   return this.name &amp;&amp; connection.parsedStatements[this.name];
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Query.prototype.prepare = function(connection) {
+var self = this;
+//prepared statements need sync to be called after each command
+//complete or when an error is encountered
+this.isPreparedStatement = true;
+//TODO refactor this poor encapsulation
+if(!this.<span class="apidocCodeKeywordSpan">hasBeenParsed</span>(connection)) {
+  connection.parse({
+    text: self.text,
+    name: self.name,
+    types: self.types
+  }, true);
+}
+...</pre></li>
     </ul>
 
 
@@ -3480,7 +4377,23 @@ pg.connect(function(err, client, release) {
 
   this._getRows(connection, this.rows);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  return this.callback(err);
+}
+this.emit('error', err);
+};
+
+Query.prototype.submit = function(connection) {
+if(this.requiresPreparation()) {
+  this.<span class="apidocCodeKeywordSpan">prepare</span>(connection);
+} else {
+  connection.query(this.text);
+}
+};
+
+Query.prototype.hasBeenParsed = function(connection) {
+return this.name &amp;&amp; connection.parsedStatements[this.name];
+...</pre></li>
     </ul>
 
 
@@ -3506,7 +4419,23 @@ pg.connect(function(err, client, release) {
   //prepare if there are values
   return (this.values || 0).length &gt; 0;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  if(this.callback) {
+    return this.callback(err);
+  }
+  this.emit('error', err);
+};
+
+Query.prototype.submit = function(connection) {
+  if(this.<span class="apidocCodeKeywordSpan">requiresPreparation</span>()) {
+    this.prepare(connection);
+  } else {
+    connection.query(this.text);
+  }
+};
+
+Query.prototype.hasBeenParsed = function(connection) {
+...</pre></li>
     </ul>
 
 
@@ -3525,7 +4454,22 @@ pg.connect(function(err, client, release) {
     connection.query(this.text);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Client.prototype._pulseQueryQueue = function() {
+  if(this.readyForQuery===true) {
+    this.activeQuery = this.queryQueue.shift();
+    if(this.activeQuery) {
+      this.readyForQuery = false;
+      this.hasExecuted = true;
+      this.activeQuery.<span class="apidocCodeKeywordSpan">submit</span>(this.connection);
+    } else if(this.hasExecuted) {
+      this.activeQuery = null;
+      this.emit('drain');
+    }
+  }
+};
+...</pre></li>
     </ul>
 
 
@@ -3601,7 +4545,22 @@ pg.connect(function(err, client, release) {
     return cb(null, params.join(' '));
   });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var self = this;
+
+  var onError = function(err) {
+    if(cb) return cb(err);
+    return self.emit('error', err);
+  };
+
+  this.connectionParameters.<span class="apidocCodeKeywordSpan">getLibpqConnectionString</span>(function(err, conString) {
+    if(err) return onError(err);
+    self.native.connect(conString, function(err) {
+if(err) return onError(err);
+
+//set internal states to connected
+self._connected = true;
+...</pre></li>
     </ul>
 
 
@@ -3643,7 +4602,23 @@ pg.connect(function(err, client, release) {
   this.secretKey = null;
   this.ssl = this.connectionParameters.ssl || false;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  return client.cancel(query);
+}
+var c = config;
+//allow for no config to be passed
+if(typeof c === 'function') {
+  c = defaults;
+}
+var cancellingClient = new this.<span class="apidocCodeKeywordSpan">Client</span>(c);
+cancellingClient.cancel(client, query);
+};
+
+if(typeof process.env.NODE_PG_FORCE_NATIVE != 'undefined') {
+module.exports = new PG(require('./native'));
+} else {
+module.exports = new PG(Client);
+...</pre></li>
     </ul>
 
 
@@ -3732,10 +4707,231 @@ pg.connect(function(err, client, release) {
   };
   return pool;
 }</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+
+PG.prototype.connect = function(config, callback) {
+  if(typeof config == "function") {
+    callback = config;
+    config = null;
+  }
+  var pool = this.pools.<span class="apidocCodeKeywordSpan">getOrCreate</span>(config);
+  pool.connect(callback);
+  if(!pool.listeners('error').length) {
+    //propagate errors up to pg object
+    pool.on('error', this.emit.bind(this, 'error'));
+  }
+};
+...</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pg.js.query" id="apidoc.module.pg.js.query">module pg.js.query</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.query.query" id="apidoc.element.pg.js.query.query">
+        function <span class="apidocSignatureSpan">pg.js.</span>query
+        <span class="apidocSignatureSpan">(native)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">query = function (native) {
+  EventEmitter.call(this);
+  this.native = native;
+  this.text = null;
+  this.values = null;
+  this.name = null;
+  this.callback = null;
+  this.state = 'new';
+  this._arrayMode = false;
+
+  //if the 'row' event is listened for
+  //then emit them as they come in
+  //without setting singleRowMode to true
+  //this has almost no meaning because libpq
+  //reads all rows into memory befor returning any
+  this._emitRowEvents = false;
+  this.on('newListener', function(event) {
+    if(event === 'row') this._emitRowEvents = true;
+  }.bind(this));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```js
+//exact same code, you can just change the string
+//in your requires from pg to pg.js and you're done
+var pg = require('pg.js')
+
+pg.connect(function(err, client, release) {
+  if (err) throw err;
+  client.<span class="apidocCodeKeywordSpan">query</span>('SELECT NOW()', function(err, res) {
+    release()
+    if (err) throw err;
+    console.log(res.rows[0])
+  })
+})
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.query.super_" id="apidoc.element.pg.js.query.super_">
+        function <span class="apidocSignatureSpan">pg.js.query.</span>super_
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function EventEmitter() {
+  EventEmitter.init.call(this);
+}</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pg.js.query.prototype" id="apidoc.module.pg.js.query.prototype">module pg.js.query.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.query.prototype.handleError" id="apidoc.element.pg.js.query.prototype.handleError">
+        function <span class="apidocSignatureSpan">pg.js.query.prototype.</span>handleError
+        <span class="apidocSignatureSpan">(err)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">handleError = function (err) {
+  var self = this;
+  //copy pq error fields into the error object
+  var fields = self.native.pq.resultErrorFields();
+  if(fields) {
+    for(var key in fields) {
+      err[key] = fields[key];
+    }
+  }
+  if(self.callback) {
+    self.callback(err);
+  } else {
+    self.emit('error', err);
+  }
+  self.state = 'error';
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+});
+
+con.on('error', function(error) {
+  if(self.activeQuery) {
+    var activeQuery = self.activeQuery;
+    self.activeQuery = null;
+    return activeQuery.<span class="apidocCodeKeywordSpan">handleError</span>(error, con);
+  }
+  if(!callback) {
+    return self.emit('error', error);
+  }
+  callback(error);
+  callback = null;
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pg.js.query.prototype.submit" id="apidoc.element.pg.js.query.prototype.submit">
+        function <span class="apidocSignatureSpan">pg.js.query.prototype.</span>submit
+        <span class="apidocSignatureSpan">(client)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">submit = function (client) {
+  this.state = 'running';
+  var self = this;
+  client.native.arrayMode = this._arrayMode;
+
+  var after = function(err, rows) {
+    client.native.arrayMode = false;
+    setImmediate(function() {
+      self.emit('_done');
+    });
+
+    //handle possible query error
+    if(err) {
+      return self.handleError(err);
+    }
+
+    var result = new NativeResult();
+    result.addCommandComplete(self.native.pq);
+    result.rows = rows;
+
+    //emit row events for each row in the result
+    if(self._emitRowEvents) {
+      rows.forEach(function(row) {
+        self.emit('row', row, result);
+      });
+    }
+
+
+    //handle successful result
+    self.state = 'end';
+    self.emit('end', result);
+    if(self.callback) {
+      self.callback(null, result);
+    }
+  };
+
+  if(process.domain) {
+    after = process.domain.bind(after);
+  }
+
+  //named query
+  if(this.name) {
+    var values = (this.values||[]).map(utils.prepareValue);
+
+    //check if the client has already executed this named query
+    //if so...just execute it again - skip the planning phase
+    if(client.namedQueries[this.name]) {
+      return this.native.execute(this.name, values, after);
+    }
+    //plan the named query the first time, then execute it
+    return this.native.prepare(this.name, this.text, values.length, function(err) {
+      if(err) return after(err);
+      client.namedQueries[self.name] = true;
+      return self.native.execute(self.name, values, after);
+    });
+  }
+  else if(this.values) {
+    var vals = this.values.map(utils.prepareValue);
+    this.native.query(this.text, vals, after);
+  } else {
+    this.native.query(this.text, after);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Client.prototype._pulseQueryQueue = function() {
+  if(this.readyForQuery===true) {
+    this.activeQuery = this.queryQueue.shift();
+    if(this.activeQuery) {
+      this.readyForQuery = false;
+      this.hasExecuted = true;
+      this.activeQuery.<span class="apidocCodeKeywordSpan">submit</span>(this.connection);
+    } else if(this.hasExecuted) {
+      this.activeQuery = null;
+      this.emit('drain');
+    }
+  }
+};
+...</pre></li>
+    </ul>
 
 
 </div>
@@ -3861,7 +5057,23 @@ if(!this.rowAsArray) {
     }
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  //if there is a callback collect rows
+  if(this.callback) {
+    this._result.addRow(row);
+  }
+};
+
+Query.prototype.handleCommandComplete = function(msg, con) {
+  this._result.<span class="apidocCodeKeywordSpan">addCommandComplete</span>(msg);
+  //need to sync after each command complete of a prepared statement
+  if(this.isPreparedStatement) {
+    con.sync();
+  }
+};
+
+Query.prototype.handleReadyForQuery = function() {
+...</pre></li>
     </ul>
 
 
@@ -3896,7 +5108,23 @@ if(!this.rowAsArray) {
     this.RowCtor = Function("parsers", "rowData", ctorBody);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+};
+
+
+//associates row metadata from the supplied
+//message with this query object
+//metadata used when parsing row results
+Query.prototype.handleRowDescription = function(msg) {
+this._result.<span class="apidocCodeKeywordSpan">addFields</span>(msg.fields);
+};
+
+Query.prototype.handleDataRow = function(msg) {
+var row = this._result.parseRow(msg.fields);
+this.emit('row', row, this._result);
+
+//if there is a callback collect rows
+...</pre></li>
     </ul>
 
 
@@ -3911,7 +5139,23 @@ if(!this.rowAsArray) {
     <li>description and source-code<pre class="apidocCodePre">addRow = function (row) {
   this.rows.push(row);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Query.prototype.handleDataRow = function(msg) {
+var row = this._result.parseRow(msg.fields);
+this.emit('row', row, this._result);
+
+//if there is a callback collect rows
+if(this.callback) {
+  this._result.<span class="apidocCodeKeywordSpan">addRow</span>(row);
+}
+};
+
+Query.prototype.handleCommandComplete = function(msg, con) {
+this._result.addCommandComplete(msg);
+//need to sync after each command complete of a prepared statement
+if(this.isPreparedStatement) {
+...</pre></li>
     </ul>
 
 
@@ -3926,7 +5170,23 @@ if(!this.rowAsArray) {
     <li>description and source-code<pre class="apidocCodePre">parseRow = function (rowData) {
   return new this.RowCtor(this._parsers, rowData);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+//message with this query object
+//metadata used when parsing row results
+Query.prototype.handleRowDescription = function(msg) {
+  this._result.addFields(msg.fields);
+};
+
+Query.prototype.handleDataRow = function(msg) {
+  var row = this._result.<span class="apidocCodeKeywordSpan">parseRow</span>(msg.fields);
+  this.emit('row', row, this._result);
+
+  //if there is a callback collect rows
+  if(this.callback) {
+    this._result.addRow(row);
+  }
+};
+...</pre></li>
     </ul>
 
 
@@ -4004,17 +5264,20 @@ TypeOverrides.prototype.getTypeParser = function(oid, format) {
   return this.getOverrides(format)[oid] || this._types.getTypeParser(oid, format);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    format = 'text';
-  }
-  this.getOverrides(format)[oid] = parseFn;
 };
 
-TypeOverrides.prototype.getTypeParser = function(oid, format) {
-  format = format || 'text';
-  return this.getOverrides(format)[oid] || this._types.<span class="apidocCodeKeywordSpan">getTypeParser</span>(oid, format);
+Client.prototype.setTypeParser = function(oid, format, parseFn) {
+return this._types.setTypeParser(oid, format, parseFn);
 };
 
-module.exports = TypeOverrides;
+Client.prototype.getTypeParser = function(oid, format) {
+return this._types.<span class="apidocCodeKeywordSpan">getTypeParser</span>(oid, format);
+};
+
+// Ported from PostgreSQL 9.2.4 source code in src/interfaces/libpq/fe-exec.c
+Client.prototype.escapeIdentifier = function(str) {
+
+var escaped = '"';
 ...</pre></li>
     </ul>
 
@@ -4035,16 +5298,21 @@ module.exports = TypeOverrides;
   this.getOverrides(format)[oid] = parseFn;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-
-  application_name : undefined,
-  fallback_application_name: undefined
+    });
+  } else if(client.queryQueue.indexOf(query) != -1) {
+    client.queryQueue.splice(client.queryQueue.indexOf(query), 1);
+  }
 };
 
-//parse int8 so you can get your count values as actual numbers
-module.exports.__defineSetter__("parseInt8", function(val) {
-  require('pg-types').<span class="apidocCodeKeywordSpan">setTypeParser</span>(20, 'text', val ? parseInt :
-function(val) { return val; });
-});
+Client.prototype.setTypeParser = function(oid, format, parseFn) {
+  return this._types.<span class="apidocCodeKeywordSpan">setTypeParser</span>(oid, format, parseFn);
+};
+
+Client.prototype.getTypeParser = function(oid, format) {
+  return this._types.getTypeParser(oid, format);
+};
+
+// Ported from PostgreSQL 9.2.4 source code in src/interfaces/libpq/fe-exec.c
 ...</pre></li>
     </ul>
 
@@ -4070,17 +5338,20 @@ function(val) { return val; });
   return typeParsers[format][oid] || noParse;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    format = 'text';
-  }
-  this.getOverrides(format)[oid] = parseFn;
 };
 
-TypeOverrides.prototype.getTypeParser = function(oid, format) {
-  format = format || 'text';
-  return this.getOverrides(format)[oid] || this._types.<span class="apidocCodeKeywordSpan">getTypeParser</span>(oid, format);
+Client.prototype.setTypeParser = function(oid, format, parseFn) {
+return this._types.setTypeParser(oid, format, parseFn);
 };
 
-module.exports = TypeOverrides;
+Client.prototype.getTypeParser = function(oid, format) {
+return this._types.<span class="apidocCodeKeywordSpan">getTypeParser</span>(oid, format);
+};
+
+// Ported from PostgreSQL 9.2.4 source code in src/interfaces/libpq/fe-exec.c
+Client.prototype.escapeIdentifier = function(str) {
+
+var escaped = '"';
 ...</pre></li>
     </ul>
 
@@ -4101,16 +5372,21 @@ module.exports = TypeOverrides;
   typeParsers[format][oid] = parseFn;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-
-  application_name : undefined,
-  fallback_application_name: undefined
+    });
+  } else if(client.queryQueue.indexOf(query) != -1) {
+    client.queryQueue.splice(client.queryQueue.indexOf(query), 1);
+  }
 };
 
-//parse int8 so you can get your count values as actual numbers
-module.exports.__defineSetter__("parseInt8", function(val) {
-  require('pg-types').<span class="apidocCodeKeywordSpan">setTypeParser</span>(20, 'text', val ? parseInt :
-function(val) { return val; });
-});
+Client.prototype.setTypeParser = function(oid, format, parseFn) {
+  return this._types.<span class="apidocCodeKeywordSpan">setTypeParser</span>(oid, format, parseFn);
+};
+
+Client.prototype.getTypeParser = function(oid, format) {
+  return this._types.getTypeParser(oid, format);
+};
+
+// Ported from PostgreSQL 9.2.4 source code in src/interfaces/libpq/fe-exec.c
 ...</pre></li>
     </ul>
 
@@ -4165,7 +5441,23 @@ function(val) { return val; });
   }
   return config;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var Result = require(__dirname + '/result');
+var utils = require(__dirname + '/utils');
+
+var Query = function(config, values, callback) {
+// use of "new" optional
+if(!(this instanceof Query)) { return new Query(config, values, callback); }
+
+config = utils.<span class="apidocCodeKeywordSpan">normalizeQueryConfig</span>(config, values, callback);
+
+this.text = config.text;
+this.values = config.values;
+this.rows = config.rows;
+this.types = config.types;
+this.name = config.name;
+this.binary = config.binary;
+...</pre></li>
     </ul>
 
 
@@ -4195,7 +5487,23 @@ function(val) { return val; });
   }
   return val.toString();
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    types: self.types
+  }, true);
+}
+
+//TODO is there some better way to prepare values for the database?
+if(self.values) {
+  for(var i = 0, len = self.values.length; i &lt; len; i++) {
+    self.values[i] = utils.<span class="apidocCodeKeywordSpan">prepareValue</span>(self.values[i]);
+  }
+}
+
+//http://developer.postgresql.org/pgdocs/postgres/protocol-flow.html#PROTOCOL-FLOW-EXT-QUERY
+connection.bind({
+  portal: self.portalName,
+  statement: self.name,
+...</pre></li>
     </ul>
 
 
